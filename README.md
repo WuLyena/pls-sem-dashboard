@@ -5,7 +5,7 @@ Repository ini berisi source code dan data untuk Dashboard Interaktif Tugas Akhi
 
 📊 Akses Dashboard Utama
 Web dashboard hasil analisis telah di-deploy dan dapat diakses secara publik melalui tautan berikut:
-👉 [KLIK DI SINI UNTUK MEMBUKA DASHBOARD WEBSITE LU](https://WuLyena.github.io/pls-sem-dashboard/)
+👉 [KLIK DI SINI UNTUK MEMBUKA DASHBOARD WEBSITE](https://WuLyena.github.io/pls-sem-dashboard/)
 
 ---
 
