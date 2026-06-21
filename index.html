@@ -312,7 +312,7 @@ body {
     </div>
   </div>
 
-  <!-- SUMMARY CARDS 1: KINERJA & MAKROEKONOMI (DIKEMBALIKAN) -->
+  <!-- SUMMARY CARDS 1: KINERJA & MAKROEKONOMI -->
   <div class="sec"><span class="sec-num">01</span> Rata-Rata Kinerja & Makro (Y & X)</div>
   <div class="summary-grid">
     <div class="scard scard-y">
@@ -341,7 +341,7 @@ body {
     </div>
   </div>
 
-  <!-- SUMMARY CARDS 2: AKTIVITAS PASAR (DIKEMBALIKAN) -->
+  <!-- SUMMARY CARDS 2: AKTIVITAS PASAR -->
   <div class="sec"><span class="sec-num">02</span> Rata-Rata Aktivitas Pasar (Z)</div>
   <div class="summary-grid">
     <div class="scard scard-z">
@@ -402,7 +402,7 @@ body {
     </div>
   </div>
 
-  <!-- GRAFIK INDIVIDUAL UNTUK SCREENSHOT (DITAMBAHKAN KEMBALI GRAFIK GROWTH) -->
+  <!-- GRAFIK INDIVIDUAL UNTUK SCREENSHOT -->
   <div class="sec"><span class="sec-num">04</span> Grafik Individual Tren Waktu (Screenshot Bab 4)</div>
   
   <div class="chart-grid">
@@ -436,7 +436,6 @@ body {
       <div class="cbox-sub">Visualisasi akumulasi jumlah investor (2020-2023)</div>
       <div class="chart-wrapper"><canvas id="chart_sid_single"></canvas></div>
     </div>
-    <!-- Grafik Growth Dikembalikan -->
     <div class="cbox">
       <div class="cbox-title">Pertumbuhan Investor (SID) MoM (%)</div>
       <div class="cbox-sub">Tingkat pertumbuhan gabungan bulanan.</div>
@@ -444,19 +443,19 @@ body {
     </div>
   </div>
 
-  <!-- CHARTS GABUNGAN (DITAMBAHKAN KEMBALI GRAFIK X vs Y) -->
+  <!-- CHARTS GABUNGAN -->
   <div class="sec"><span class="sec-num">05</span> Visualisasi Tren Struktural Gabungan</div>
   <div class="chart-grid">
     <div class="cbox cbox-full">
         <div class="cbox-title">Perbandingan IHSG Tiga Periode (Pra-Pandemi, Pandemi, Pasca-Pandemi)</div>
-        <div class="cbox-sub">Rata-rata IHSG pada tiga fase yang berbeda.</div>
+        <div class="cbox-sub">Grafik historis ini mengacu pada data master (tidak berubah saat dropdown filter digunakan).</div>
         <div class="chart-wrapper"><canvas id="chart_comparison"></canvas></div>
     </div>
 
     <!-- Y: Kinerja Pasar Modal -->
     <div class="cbox cbox-full">
       <div class="cbox-title">Kinerja Pasar Modal (Y): Tren IHSG dan Kapitalisasi Pasar</div>
-      <div class="cbox-sub">Garis putus-putus vertikal menandai pergantian tahun. Dual Y-Axis. Kiri: IHSG. Kanan: Kapitalisasi Pasar. </div>
+      <div class="cbox-sub">Garis putus-putus vertikal menandai pergantian tahun. Dual Y-Axis. Kiri: IHSG. Kanan: Kapitalisasi Pasar.</div>
       <div class="chart-wrapper"><canvas id="chart_y"></canvas></div>
     </div>
 
@@ -470,7 +469,7 @@ body {
       <div class="chart-wrapper" style="height:320px;"><canvas id="chart_z"></canvas></div>
     </div>
 
-    <!-- X & Y: Makro vs IHSG (Dikembalikan) -->
+    <!-- X & Y: Makro vs IHSG -->
     <div class="cbox cbox-full">
       <div class="cbox-title">Makroekonomi (X) vs IHSG (Y)</div>
       <div class="cbox-sub">Sumbu Kiri: IHSG. Sumbu Kanan: Inflasi & BI Rate (%).</div>
@@ -994,7 +993,7 @@ body {
   <!-- FOOTER AKADEMIS -->
   <footer class="academic-footer">
     <strong>Catatan Sumber Data:</strong><br>
-    Data <em>Indeks Harga Saham Gabungan (IHSG)</em>, <em>Kapitalisasi Pasar</em>, <em>Volume Transaksi</em>, dan <em>Frekuensi Perdagangan</em> diolah dari publikasi bulanan PT Bursa Efek Indonesia (IDX) dan Yahoo Finance. Data <em>Inflasi YoY</em> dan <em>BI 7-Day Reverse Repo Rate (BI7DRR)</em> bersumber dari Badan Pusat Statistik (BPS) dan Bank Indonesia. Data <em>Single Investor Identification (SID)</em> diproyeksikan secara geometrik menggunakan data tahunan Kustodian Sentral Efek Indonesia (KSEI).<br>
+    Data <em>Indeks Harga Saham Gabungan (IHSG)</em>, <em>Kapitalisasi Pasar</em>, <em>Volume Transaksi</em>, dan <em>Frekuensi Perdagangan</em> diolah dari publikasi bulanan PT Bursa Efek Indonesia (IDX) dan Yahoo Finance. Data <em>Inflasi YoY</em> dan <em>BI 7-Day Reverse Repo Rate (BI7DRR)</em> bersumber dari Badan Pusat Statistik (BPS) dan Bank Indonesia. Data <em>Single Investor Identification (SID)</em> diproyeksikan secara geometrik menggunakan data tahunan KSEI.<br>
     Periode observasi: Januari 2020 – Desember 2023 (N=48).
   </footer>
 
@@ -1110,7 +1109,7 @@ const yearBoundaryPlugin = {
 };
 
 function renderDashboard(dataArray) {
-  // 1. Ekstraksi Data
+  // 1. Ekstraksi Data dari Array yang Sedang Aktif (Filtered / All)
   const C = {
     prd: dataArray.map(r=>r[0]), ihsg: dataArray.map(r=>r[1]), inf: dataArray.map(r=>r[2]),
     bi: dataArray.map(r=>r[3]), kurs: dataArray.map(r=>r[4]), vol: dataArray.map(r=>r[5]),
@@ -1170,7 +1169,7 @@ function renderDashboard(dataArray) {
     descBody.appendChild(tr);
   });
 
-  // 4. Matriks Korelasi
+  // 4. Matriks Korelasi (Pearson 1:1)
   const CORR_VARS = [
     { k:'ihsg', l:'IHSG', arr:C.ihsg }, { k:'kap', l:'Kapitalisasi', arr:C.kap },
     { k:'inf', l:'Inflasi', arr:C.inf }, { k:'bi', l:'BI Rate', arr:C.bi }, { k:'kurs', l:'Kurs', arr:C.kurs },
@@ -1302,13 +1301,19 @@ function renderDashboard(dataArray) {
   });
 
   // ==========================================
-  // ADDITIONS: COMPARISON, DONUT, HEATMAP
+  // CHART PERBANDINGAN 3 PERIODE (DIPERBAIKI)
   // ==========================================
+  // Di-lock secara sengaja menggunakan data MASTER (bukan dataArray yang terfilter) 
+  // agar grafik struktural historis ini selalu utuh walau filter tahun diaktifkan.
+  // Indeks perbaikan (48 Bulan):
+  // 0-2 (2 bulan): Jan-Feb 20
+  // 2-24 (22 bulan): Mar 20 - Des 21
+  // 24-48 (24 bulan): Jan 22 - Des 23
   
-  // 1. CHART PERBANDINGAN 3 PERIODE
-  const dataPre = C.ihsg.slice(0, 2);
-  const dataPandemic = C.ihsg.slice(2, 26);
-  const dataPost = C.ihsg.slice(26, 48);
+  const masterIhsg = MASTER.map(r => r[1]);
+  const dataPre = masterIhsg.slice(0, 2); 
+  const dataPandemic = masterIhsg.slice(2, 24); 
+  const dataPost = masterIhsg.slice(24, 48); 
   
   const ctxComparison = document.getElementById('chart_comparison');
   if (ctxComparison) {
@@ -1327,12 +1332,13 @@ function renderDashboard(dataArray) {
               responsive: true,
               maintainAspectRatio: false,
               plugins: { legend: { display: false } },
-              scales: { y: { beginAtZero: false, ticks: { callback: tFmt } } }
+              // WAJIB: beginAtZero: true di bar chart agar tinggi balok tidak terpotong (clipping)
+              scales: { y: { beginAtZero: true, ticks: { callback: tFmt } } }
           }
       });
   }
 
-  // 2. DONUT CHART AKTIVITAS PASAR
+  // DONUT CHART AKTIVITAS PASAR
   const ctxDonut = document.getElementById('chart_donut');
   if (ctxDonut) {
       const mVol = mean(C.vol);
@@ -1344,7 +1350,7 @@ function renderDashboard(dataArray) {
           data: {
               labels: ['Volume', 'Frekuensi', 'SID'],
               datasets: [{
-                  // Normalisasi skala visual agar tidak tertelan angka Volume
+                  // Normalisasi skala visual agar tidak tertelan angka Volume (Hanya untuk Proporsi Bentuk)
                   data: [mVol / 10000, mFreq / 1000, mSid],
                   backgroundColor: ['#717490', '#081628', '#2a4a3a'],
                   borderWidth: 0,
@@ -1358,7 +1364,7 @@ function renderDashboard(dataArray) {
                   tooltip: {
                       callbacks: {
                           label: function(context) {
-                              // Override tooltip untuk menampilkan nilai asli
+                              // Override tooltip untuk menampilkan nilai asli alih-alih data normalisasi
                               let label = context.label || '';
                               let realVal = 0;
                               let suffix = '';
@@ -1374,7 +1380,7 @@ function renderDashboard(dataArray) {
       });
   }
 
-  // 3. HEATMAP KORELASI RENDERING
+  // HEATMAP KORELASI RENDERING
   const corrVarsObj = [
       { label: 'IHSG', data: C.ihsg }, { label: 'Kapitalisasi', data: C.kap },
       { label: 'Inflasi', data: C.inf }, { label: 'BI Rate', data: C.bi },
