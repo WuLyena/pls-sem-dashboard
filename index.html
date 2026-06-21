@@ -121,7 +121,7 @@ body {
 .sec-num { font-family:'Playfair Display',serif; font-size:16px; color:var(--gold); font-style:italic; margin-right:4px; }
 
 /* ─── SUMMARY CARDS ──────────────────────────────────────────── */
-.summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:16px; }
+.summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
 .scard { background:var(--white); border-radius:var(--r-lg); padding:20px; border:1px solid var(--rule); box-shadow:var(--shadow); position:relative; overflow:hidden; }
 .scard::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
 .scard-y::before  { background:linear-gradient(90deg,var(--navy),var(--navy-lt)); }
@@ -159,15 +159,12 @@ body {
 
 /* ─── DATA TABLE ─────────────────────────────────────────────── */
 .dtable-wrap { background:var(--white); border-radius:var(--r-lg); border:1px solid var(--rule); box-shadow:var(--shadow); overflow-x:auto; -webkit-overflow-scrolling: touch; width: 100%; }
-/* Menghapus min-width paksa agar tabel bisa mengecil sesuai kolom */
 .dtable { width:100%; border-collapse:collapse; font-size:12px; }
 .dtable thead { background:var(--navy); }
-/* Menghapus white-space: nowrap agar teks bisa turun ke bawah saat layar sempit */
 .dtable thead th { padding:12px 14px; color:rgba(255,255,255,.8); font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; text-align:right; border-right:1px solid rgba(255,255,255,.1); }
 .dtable thead th:first-child, .dtable tbody td.txt-left { text-align:left; }
 .dtable tbody tr { border-bottom:1px solid var(--rule); }
 .dtable tbody tr:hover { background:var(--cream); }
-/* Menghapus white-space: nowrap agar teks pada VIF dan F-Square bisa membungkus rapi */
 .dtable tbody td { padding:10px 14px; color:var(--ink2); text-align:right; font-family:'DM Mono',monospace; border-right:1px solid var(--rule); }
 .dtable tbody td:first-child { text-align:left; font-family:'DM Sans',sans-serif; font-weight:600; color:var(--navy); }
 .status-pass { color: var(--sage); font-weight: 700; background: var(--sage-lt); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-family: 'DM Sans', sans-serif;}
@@ -188,7 +185,6 @@ body {
   .pm-flex { flex-direction: column; }
   .pm-arrow { transform: rotate(90deg); margin: -5px 0; }
   .pm-direct-path { display: none; }
-  /* Memecah layout split layar pada ukuran medium agar tabel tidak tercekik */
   .grid-halves { grid-template-columns: 1fr; }
 }
 
@@ -202,7 +198,6 @@ body {
   .topbar-actions { width: 100%; justify-content: space-between; }
   
   .chart-grid { grid-template-columns: 1fr; }
-  
   .page { padding: 20px 16px 60px; }
   .cbox { padding: 16px; }
 }
@@ -241,19 +236,43 @@ body {
     <div>
       <div class="header-kicker">Data Master 48 Bulan (Jan 2020 – Des 2023)</div>
       <h1>Model Pengaruh Makroekonomi terhadap <em>Kinerja Pasar Modal</em></h1>
-      <p class="header-sub">Menampilkan 10 variabel terintegrasi (X, Z, Y) sesuai data aktual bulanan BEI, BPS, dan Bank Indonesia. Seluruh perhitungan mean dan matriks korelasi dieksekusi secara real-time dari array master.</p>
+      <p class="header-sub">Menampilkan 9 variabel terintegrasi (8 indikator PLS-SEM + 1 variabel pertumbuhan SID) sesuai data aktual bulanan BEI, BPS, dan Bank Indonesia. Seluruh perhitungan mean, std deviasi, dan matriks korelasi dieksekusi secara real-time dari array master.</p>
     </div>
     <div class="header-meta">
       <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed var(--rule);">
         <strong style="color:var(--navy); font-size:14px; font-family:'Playfair Display',serif;">Muhammad Nuril Syifa Elmar</strong><br>
         <span style="font-size:10px; color:var(--ink3); text-transform:uppercase; letter-spacing:0.08em; font-weight:700;">Fakultas Ekonomi<br>Universitas MH. Thamrin</span>
       </div>
-      <strong>N Observasi:</strong> 48 Bulan<br>
+      <strong>N Observasi:</strong> <span id="n-obs-head">48</span> Bulan<br>
       <strong>Variabel X:</strong> Inflasi, BI Rate, Kurs<br>
       <strong>Variabel Z:</strong> Vol, Freq, SID (Aktivitas)<br>
       <strong>Variabel Y:</strong> IHSG, Kapitalisasi
     </div>
   </header>
+
+  <!-- INFOGRAPHIS RINGKASAN -->
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; background: var(--navy-deep); border-radius: var(--r-lg); padding: 20px; color: var(--cream);">
+      <div style="text-align: center;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6;">Periode</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--gold-lt);">2020-2023</div>
+          <div style="font-size: 11px; opacity: 0.7;">48 Bulan Observasi</div>
+      </div>
+      <div style="text-align: center;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6;">Jumlah Variabel</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--gold-lt);">9</div>
+          <div style="font-size: 11px; opacity: 0.7;">X=3, Z=3, Y=2</div>
+      </div>
+      <div style="text-align: center;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6;">Metode Analisis</div>
+          <div style="font-size: 16px; font-weight: 700; color: var(--gold-lt);">PLS-SEM</div>
+          <div style="font-size: 11px; opacity: 0.7;">SmartPLS 4</div>
+      </div>
+      <div style="text-align: center;">
+          <div style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6;">Daya Prediksi</div>
+          <div style="font-size: 20px; font-weight: 700; color: var(--gold-lt);">86.3%</div>
+          <div style="font-size: 11px; opacity: 0.7;">R² Kinerja Pasar (Y)</div>
+      </div>
+  </div>
 
   <!-- KERANGKA KONSEPTUAL (PATH MODEL) -->
   <div class="pm-wrap">
@@ -293,7 +312,7 @@ body {
     </div>
   </div>
 
-  <!-- SUMMARY CARDS: KINERJA & MAKROEKONOMI -->
+  <!-- SUMMARY CARDS 1: KINERJA & MAKROEKONOMI (DIKEMBALIKAN) -->
   <div class="sec"><span class="sec-num">01</span> Rata-Rata Kinerja & Makro (Y & X)</div>
   <div class="summary-grid">
     <div class="scard scard-y">
@@ -322,7 +341,7 @@ body {
     </div>
   </div>
 
-  <!-- SUMMARY CARDS: AKTIVITAS PASAR -->
+  <!-- SUMMARY CARDS 2: AKTIVITAS PASAR (DIKEMBALIKAN) -->
   <div class="sec"><span class="sec-num">02</span> Rata-Rata Aktivitas Pasar (Z)</div>
   <div class="summary-grid">
     <div class="scard scard-z">
@@ -351,88 +370,142 @@ body {
     </div>
   </div>
 
-  <!-- BAGIAN BARU: GRAFIK INDIVIDUAL UNTUK SCREENSHOT -->
-  <div class="sec"><span class="sec-num">03</span> Grafik Individual (Untuk Screenshot Lampiran Skripsi)</div>
-  <p style="font-size: 12px; color: var(--ink3); margin-top: -12px; margin-bottom: 16px;">Gunakan bagian ini untuk memotong gambar (screenshot) per variabel sesuai kebutuhan penulisan deskripsi data.</p>
+  <div class="chart-grid" style="margin-bottom: 24px;">
+      <div class="cbox">
+          <div class="cbox-title">Komposisi Rata-rata Aktivitas Pasar</div>
+          <div class="cbox-sub">Perbandingan rata-rata Volume, Frekuensi (dibagi 1000), dan SID.</div>
+          <div class="chart-wrapper"><canvas id="chart_donut"></canvas></div>
+      </div>
+  </div>
+
+  <!-- TABEL STATISTIK DESKRIPTIF DETAIL -->
+  <div class="sec"><span class="sec-num">03</span> Tabel Statistik Deskriptif Detail (Bab 4)</div>
+  <div class="cbox cbox-full" style="margin-bottom: 48px;">
+    <div class="cbox-title">Statistik Deskriptif Sampel</div>
+    <div class="cbox-sub">Gunakan tabel ini untuk menjelaskan deskripsi sebaran data (Nilai Minimum, Maksimum, Rata-rata, dan Standar Deviasi) di Bab 4.</div>
+    <div class="dtable-wrap">
+      <table class="dtable" style="min-width: 600px;">
+        <thead>
+          <tr>
+            <th class="txt-left">Variabel / Indikator</th>
+            <th>N (Bulan)</th>
+            <th>Minimum</th>
+            <th>Maksimum</th>
+            <th>Mean (Rata-Rata)</th>
+            <th>Std. Deviation</th>
+          </tr>
+        </thead>
+        <tbody id="descStatsBody">
+          <!-- Diisi via JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GRAFIK INDIVIDUAL UNTUK SCREENSHOT (DITAMBAHKAN KEMBALI GRAFIK GROWTH) -->
+  <div class="sec"><span class="sec-num">04</span> Grafik Individual Tren Waktu (Screenshot Bab 4)</div>
   
   <div class="chart-grid">
-    <!-- Gambar 4.5: Inflasi -->
     <div class="cbox">
       <div class="cbox-title">Tren Inflasi YoY (%)</div>
-      <div class="cbox-sub">Gambar 4.5 - Visualisasi pergerakan inflasi (2020-2023)</div>
+      <div class="cbox-sub">Visualisasi pergerakan inflasi (2020-2023)</div>
       <div class="chart-wrapper"><canvas id="chart_inflasi"></canvas></div>
     </div>
-    
-    <!-- Gambar 4.6: Suku Bunga -->
     <div class="cbox">
       <div class="cbox-title">Tren Suku Bunga BI7DRR (%)</div>
-      <div class="cbox-sub">Gambar 4.6 - Visualisasi pergerakan suku bunga acuan (2020-2023)</div>
+      <div class="cbox-sub">Visualisasi pergerakan suku bunga acuan (2020-2023)</div>
       <div class="chart-wrapper"><canvas id="chart_birate"></canvas></div>
     </div>
-
-    <!-- Gambar 4.7: Nilai Tukar -->
     <div class="cbox">
       <div class="cbox-title">Tren Nilai Tukar (Kurs Rupiah / USD)</div>
-      <div class="cbox-sub">Gambar 4.7 - Visualisasi pergerakan nilai tukar (2020-2023)</div>
+      <div class="cbox-sub">Visualisasi pergerakan nilai tukar (2020-2023)</div>
       <div class="chart-wrapper"><canvas id="chart_kurs"></canvas></div>
     </div>
-
-    <!-- Gambar 4.8: Volume -->
     <div class="cbox">
       <div class="cbox-title">Tren Volume Transaksi (Juta Lembar)</div>
-      <div class="cbox-sub">Gambar 4.8 - Visualisasi pergerakan volume perdagangan (2020-2023)</div>
+      <div class="cbox-sub">Visualisasi pergerakan volume perdagangan (2020-2023)</div>
       <div class="chart-wrapper"><canvas id="chart_volume_single"></canvas></div>
     </div>
-
-    <!-- Gambar 4.9: Frekuensi -->
     <div class="cbox">
       <div class="cbox-title">Tren Frekuensi Perdagangan (Ribu Trx)</div>
-      <div class="cbox-sub">Gambar 4.9 - Visualisasi pergerakan frekuensi perdagangan (2020-2023)</div>
+      <div class="cbox-sub">Visualisasi pergerakan frekuensi perdagangan (2020-2023)</div>
       <div class="chart-wrapper"><canvas id="chart_frekuensi_single"></canvas></div>
     </div>
-    
-    <!-- Gambar 4.11: Pertumbuhan SID -->
+    <div class="cbox">
+      <div class="cbox-title">Tren Jumlah Investor SID (Juta Orang)</div>
+      <div class="cbox-sub">Visualisasi akumulasi jumlah investor (2020-2023)</div>
+      <div class="chart-wrapper"><canvas id="chart_sid_single"></canvas></div>
+    </div>
+    <!-- Grafik Growth Dikembalikan -->
     <div class="cbox">
       <div class="cbox-title">Pertumbuhan Investor (SID) MoM (%)</div>
-      <div class="cbox-sub">Gambar 4.11 - Tingkat pertumbuhan gabungan bulanan.</div>
+      <div class="cbox-sub">Tingkat pertumbuhan gabungan bulanan.</div>
       <div class="chart-wrapper"><canvas id="chart_growth"></canvas></div>
     </div>
   </div>
 
-  <!-- CHARTS GABUNGAN -->
-  <div class="sec"><span class="sec-num">04</span> Visualisasi Tren Struktural Gabungan (2020–2023)</div>
+  <!-- CHARTS GABUNGAN (DITAMBAHKAN KEMBALI GRAFIK X vs Y) -->
+  <div class="sec"><span class="sec-num">05</span> Visualisasi Tren Struktural Gabungan</div>
   <div class="chart-grid">
-    
-    <!-- Y: Kinerja Pasar Modal (Gambar 4.12 & 4.13) -->
+    <div class="cbox cbox-full">
+        <div class="cbox-title">Perbandingan IHSG Tiga Periode (Pra-Pandemi, Pandemi, Pasca-Pandemi)</div>
+        <div class="cbox-sub">Rata-rata IHSG pada tiga fase yang berbeda.</div>
+        <div class="chart-wrapper"><canvas id="chart_comparison"></canvas></div>
+    </div>
+
+    <!-- Y: Kinerja Pasar Modal -->
     <div class="cbox cbox-full">
       <div class="cbox-title">Kinerja Pasar Modal (Y): Tren IHSG dan Kapitalisasi Pasar</div>
-      <div class="cbox-sub">Garis putus-putus vertikal menandai pergantian tahun. Dual Y-Axis. Kiri: IHSG. Kanan: Kapitalisasi Pasar. (Gambar 4.12 & 4.13)</div>
+      <div class="cbox-sub">Garis putus-putus vertikal menandai pergantian tahun. Dual Y-Axis. Kiri: IHSG. Kanan: Kapitalisasi Pasar. </div>
       <div class="chart-wrapper"><canvas id="chart_y"></canvas></div>
     </div>
 
-    <!-- Z: Aktivitas Pasar (Gambar 4.8, 4.9, 4.10 Gabungan) -->
+    <!-- Z: Aktivitas Pasar -->
     <div class="cbox cbox-full">
-      <div class="cbox-title">Aktivitas Pasar (Z): Volume, Frekuensi, dan Jumlah Investor (SID Gabungan)</div>
+      <div class="cbox-title">Aktivitas Pasar (Z): Volume, Frekuensi, dan Jumlah Investor (SID)</div>
       <div class="cbox-sub">
         Garis putus-putus vertikal menandai pergantian tahun. Sumbu Kiri: Volume (Juta Lembar). Sumbu Kanan: Frekuensi & SID (Juta).<br>
-        <strong style="color:var(--maroon)">DISCLAIMER METODOLOGI:</strong> Variabel Frekuensi pada grafik ini dinormalisasi (dibagi 1.000) murni untuk ekuivalensi visual skala. Pengujian statistik PLS-SEM tetap menggunakan nilai riil absolut (dalam satuan Ribu Transaksi).
+        <strong style="color:var(--maroon)">DISCLAIMER METODOLOGI:</strong> Variabel Frekuensi pada grafik ini dinormalisasi (dibagi 1.000) murni untuk ekuivalensi visual skala.
       </div>
       <div class="chart-wrapper" style="height:320px;"><canvas id="chart_z"></canvas></div>
     </div>
 
-    <!-- X & Y: Makro vs IHSG -->
+    <!-- X & Y: Makro vs IHSG (Dikembalikan) -->
     <div class="cbox cbox-full">
       <div class="cbox-title">Makroekonomi (X) vs IHSG (Y)</div>
       <div class="cbox-sub">Sumbu Kiri: IHSG. Sumbu Kanan: Inflasi & BI Rate (%).</div>
       <div class="chart-wrapper"><canvas id="chart_x"></canvas></div>
     </div>
+  </div>
 
+  <!-- SCATTER PLOTS -->
+  <div class="sec"><span class="sec-num">06</span> Visualisasi Sebaran & Hubungan (Scatter Plot)</div>
+  <p style="font-size: 12px; color: var(--ink3); margin-top: -12px; margin-bottom: 16px;">Scatter plot memberikan bukti visual linearitas hubungan antar variabel sebelum diuji matriks korelasi dan PLS-SEM.</p>
+  
+  <div class="chart-grid">
+    <div class="cbox">
+      <div class="cbox-title">Hubungan Volume Transaksi vs IHSG</div>
+      <div class="cbox-sub">Sumbu X: Volume Transaksi (Juta). Sumbu Y: IHSG. Pola sebaran membuktikan adanya hubungan linear positif.</div>
+      <div class="chart-wrapper"><canvas id="chart_scatter_vol_ihsg"></canvas></div>
+    </div>
+    <div class="cbox">
+      <div class="cbox-title">Hubungan Inflasi vs IHSG</div>
+      <div class="cbox-sub">Sumbu X: Inflasi YoY (%). Sumbu Y: IHSG. Visualisasi respons kinerja pasar terhadap guncangan makro.</div>
+      <div class="chart-wrapper"><canvas id="chart_scatter_inf_ihsg"></canvas></div>
+    </div>
   </div>
 
   <!-- CORRELATION MATRIX -->
-  <div class="sec"><span class="sec-num">05</span> Matriks Korelasi Pearson (Gambar 4.14)</div>
+  <div class="sec"><span class="sec-num">07</span> Matriks Korelasi Pearson</div>
+
+  <div class="cbox cbox-full" style="margin-bottom: 24px; background: var(--navy-deep); border-color: var(--navy-deep);">
+      <div class="cbox-title" style="color: var(--gold-lt);">Heatmap Korelasi Antar Variabel</div>
+      <div class="cbox-sub" style="color: rgba(255,255,255,0.7);">Visualisasi warna korelasi antar variabel.</div>
+      <div id="heatmap-container" style="overflow-x:auto; padding: 10px 0;"></div>
+  </div>
+
   <div class="corr-matrix-wrap" style="margin-bottom: 48px;">
-    <div class="corr-matrix-head">Validasi Hubungan Linear Antar Konstruk Model</div>
+    <div class="corr-matrix-head">Validasi Hubungan Linear Antar Konstruk Model </div>
     <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
       <table class="corr-matrix" style="min-width: 800px;">
         <thead><tr id="cmHead"></tr></thead>
@@ -442,7 +515,7 @@ body {
   </div>
 
   <!-- DATA MASTER TABLE -->
-  <div class="sec"><span class="sec-num">06</span> Dataset Master (<span id="n-obs">48</span> Observasi)</div>
+  <div class="sec"><span class="sec-num">08</span> Dataset Master</div>
   <div class="dtable-wrap">
     <table class="dtable" style="min-width: 1000px; white-space: nowrap;">
       <thead>
@@ -464,7 +537,7 @@ body {
   </div>
 
   <!-- HASIL PLS-SEM -->
-  <div class="sec"><span class="sec-num">07</span> Hasil Pengujian PLS-SEM (SmartPLS 4)</div>
+  <div class="sec"><span class="sec-num">09</span> Hasil Pengujian PLS-SEM (SmartPLS 4)</div>
 
   <!-- Outer Model Result Box -->
   <div class="cbox cbox-full" style="margin-bottom: 24px;">
@@ -527,6 +600,67 @@ body {
     <!-- Inner Model / Path Coef -->
     <div class="cbox cbox-full" style="margin-bottom: 0;">
       <div class="cbox-title" style="margin-bottom: 16px;">B. Evaluasi Inner Model (Path Coefficients & Hipotesis)</div>
+
+      <!-- PATH DIAGRAM LENGKAP -->
+      <div class="cbox cbox-full" style="margin-bottom: 24px; background: var(--cream);">
+          <div class="cbox-title" style="margin-bottom: 16px;">Diagram Jalur Struktural (Path Diagram) dengan Koefisien</div>
+          <div style="display: flex; justify-content: center; align-items: center; padding: 20px; gap: 20px; flex-wrap: wrap; background: var(--white); border-radius: var(--r-lg);">
+              <!-- Node X -->
+              <div style="text-align: center; padding: 16px 24px; background: var(--maroon-lt); border-radius: var(--r); border: 2px solid var(--maroon); min-width: 140px;">
+                  <div style="font-size: 10px; font-weight: 700; color: var(--maroon); text-transform: uppercase; letter-spacing: 0.08em;">X</div>
+                  <div style="font-weight: 700; font-size: 13px; color: var(--maroon);">Kondisi Makro</div>
+                  <div style="font-size: 10px; color: var(--ink3); line-height: 1.2;">Inflasi, BI Rate, Kurs</div>
+              </div>
+              <!-- Panah X → Z -->
+              <div style="text-align: center;">
+                  <div style="font-size: 28px; color: var(--gold);">➔</div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--gold); background: var(--gold-pale); padding: 2px 10px; border-radius: 12px; margin-top: -6px;">
+                      β = 0.435 ***
+                  </div>
+              </div>
+              <!-- Node Z -->
+              <div style="text-align: center; padding: 16px 24px; background: var(--sage-lt); border-radius: var(--r); border: 2px solid var(--sage); min-width: 140px;">
+                  <div style="font-size: 10px; font-weight: 700; color: var(--sage); text-transform: uppercase; letter-spacing: 0.08em;">Z</div>
+                  <div style="font-weight: 700; font-size: 13px; color: var(--sage);">Aktivitas Pasar</div>
+                  <div style="font-size: 10px; color: var(--ink3); line-height: 1.2;">Volume, Freq, SID</div>
+                  <div style="font-size: 10px; background: var(--cream); padding: 2px 8px; border-radius: 4px; margin-top: 4px;">
+                      R² = 0.189
+                  </div>
+              </div>
+              <!-- Panah Z → Y -->
+              <div style="text-align: center;">
+                  <div style="font-size: 28px; color: var(--gold);">➔</div>
+                  <div style="font-size: 11px; font-weight: 700; color: var(--gold); background: var(--gold-pale); padding: 2px 10px; border-radius: 12px; margin-top: -6px;">
+                      β = 0.831 ***
+                  </div>
+              </div>
+              <!-- Node Y -->
+              <div style="text-align: center; padding: 16px 24px; background: rgba(13,31,60,0.08); border-radius: var(--r); border: 2px solid var(--navy); min-width: 140px;">
+                  <div style="font-size: 10px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.08em;">Y</div>
+                  <div style="font-weight: 700; font-size: 13px; color: var(--navy);">Kinerja Pasar</div>
+                  <div style="font-size: 10px; color: var(--ink3); line-height: 1.2;">IHSG, Kapitalisasi</div>
+                  <div style="font-size: 10px; background: var(--cream); padding: 2px 8px; border-radius: 4px; margin-top: 4px;">
+                      R² = 0.863
+                  </div>
+              </div>
+          </div>
+          <!-- Panah Langsung X → Y -->
+          <div style="display: flex; justify-content: center; align-items: center; margin-top: 8px;">
+              <div style="font-size: 11px; font-weight: 700; color: var(--gold); background: var(--gold-pale); padding: 2px 16px; border-radius: 12px; border: 1px dashed var(--gold);">
+                  Direct Effect: β = 0.189 ***
+              </div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--maroon); background: var(--maroon-lt); padding: 2px 16px; border-radius: 12px; margin-left: 16px; border: 1px dashed var(--maroon);">
+                  Indirect Effect (Mediasi): β = 0.361 ***
+              </div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--sage); background: var(--sage-lt); padding: 2px 16px; border-radius: 12px; margin-left: 16px; border: 1px dashed var(--sage);">
+                  Total Effect: β = 0.551
+              </div>
+          </div>
+          <div style="text-align: center; margin-top: 8px;">
+              <span style="font-size: 10px; color: var(--ink3);">*** signifikan pada p-value &lt; 0.001</span>
+          </div>
+      </div>
+
       <div class="dtable-wrap" style="margin-bottom: 24px;">
         <table class="dtable">
           <thead>
@@ -571,22 +705,98 @@ body {
         </table>
       </div>
 
-      <!-- Ringkasan Hipotesis -->
+      <!-- TABEL RINGKASAN HIPOTESIS -->
       <div style="margin-bottom: 24px;">
-        <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Ringkasan Keputusan Hipotesis</div>
-        <div class="dtable-wrap">
-          <table class="dtable" style="min-width: 600px;">
-            <thead>
-              <tr><th>Hipotesis</th><th>Pernyataan Hipotesis</th><th>T-Stat</th><th>P-Value</th><th>Keputusan</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>H1</strong></td><td class="txt-left">Kondisi Makro (X) berpengaruh signifikan terhadap Aktivitas Pasar (Z)</td><td>5.083</td><td>0.000</td><td><span class="status-pass">H1 Diterima</span></td></tr>
-              <tr><td><strong>H2</strong></td><td class="txt-left">Kondisi Makro (X) berpengaruh signifikan terhadap Kinerja Pasar (Y)</td><td>4.162</td><td>0.000</td><td><span class="status-pass">H2 Diterima</span></td></tr>
-              <tr><td><strong>H3</strong></td><td class="txt-left">Aktivitas Pasar (Z) berpengaruh signifikan terhadap Kinerja Pasar (Y)</td><td>20.855</td><td>0.000</td><td><span class="status-pass">H3 Diterima</span></td></tr>
-              <tr style="background: var(--cream-dk);"><td><strong>H4</strong></td><td class="txt-left">Aktivitas Pasar (Z) memediasi pengaruh Kondisi Makro (X) terhadap Kinerja Pasar (Y)</td><td>5.342</td><td>0.000</td><td><span class="status-pass">H4 Diterima (Mediasi)</span></td></tr>
-            </tbody>
-          </table>
-        </div>
+          <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Ringkasan Hasil Uji Hipotesis</div>
+          <div class="dtable-wrap">
+              <table class="dtable" style="min-width: 700px;">
+                  <thead>
+                      <tr>
+                          <th style="width: 60px;">Hipotesis</th>
+                          <th class="txt-left">Pernyataan Hipotesis</th>
+                          <th>Koefisien (β)</th>
+                          <th>T-Stat</th>
+                          <th>P-Value</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td><strong>H1</strong></td>
+                          <td class="txt-left">Kondisi Makro (X) → Aktivitas Pasar (Z)</td>
+                          <td>0.435</td>
+                          <td>5.083</td>
+                          <td>0.000</td>
+                          <td><span class="status-pass">✓ Diterima</span></td>
+                      </tr>
+                      <tr>
+                          <td><strong>H2</strong></td>
+                          <td class="txt-left">Kondisi Makro (X) → Kinerja Pasar (Y)</td>
+                          <td>0.189</td>
+                          <td>4.162</td>
+                          <td>0.000</td>
+                          <td><span class="status-pass">✓ Diterima</span></td>
+                      </tr>
+                      <tr>
+                          <td><strong>H3</strong></td>
+                          <td class="txt-left">Aktivitas Pasar (Z) → Kinerja Pasar (Y)</td>
+                          <td>0.831</td>
+                          <td>20.855</td>
+                          <td>0.000</td>
+                          <td><span class="status-pass">✓ Diterima</span></td>
+                      </tr>
+                      <tr style="background: var(--gold-pale);">
+                          <td><strong>H4</strong></td>
+                          <td class="txt-left"><strong>Mediasi: X → Z → Y</strong></td>
+                          <td><strong>0.361</strong></td>
+                          <td><strong>5.342</strong></td>
+                          <td><strong>0.000</strong></td>
+                          <td><span class="status-pass">✓ Diterima (Mediasi Parsial)</span></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <!-- TABEL PERBANDINGAN EFEK -->
+      <div style="margin-bottom: 24px;">
+          <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Perbandingan Pengaruh Langsung dan Tidak Langsung</div>
+          <div class="dtable-wrap">
+              <table class="dtable" style="min-width: 600px;">
+                  <thead>
+                      <tr>
+                          <th class="txt-left">Jalur Pengaruh</th>
+                          <th>Direct Effect</th>
+                          <th>Indirect Effect</th>
+                          <th>Total Effect</th>
+                          <th>Kontribusi Mediasi</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="txt-left">Kondisi Makro (X) → Kinerja Pasar (Y)</td>
+                          <td>0.189</td>
+                          <td>0.361</td>
+                          <td>0.551</td>
+                          <td><span style="font-weight: 700; color: var(--gold);">65.5%</span></td>
+                      </tr>
+                      <tr>
+                          <td class="txt-left">Kondisi Makro (X) → Aktivitas Pasar (Z)</td>
+                          <td>0.435</td>
+                          <td>-</td>
+                          <td>0.435</td>
+                          <td>-</td>
+                      </tr>
+                      <tr>
+                          <td class="txt-left">Aktivitas Pasar (Z) → Kinerja Pasar (Y)</td>
+                          <td>0.831</td>
+                          <td>-</td>
+                          <td>0.831</td>
+                          <td>-</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
       </div>
 
       <!-- R Square & F Square Grid inside Inner Model -->
@@ -754,6 +964,33 @@ body {
     </ul>
   </div>
 
+  <!-- KETERBATASAN & AGENDA -->
+  <div class="cbox cbox-full" style="margin-bottom: 24px; background: var(--cream); border-color: var(--rule);">
+      <div class="cbox-title" style="margin-bottom: 16px;">F. Keterbatasan Penelitian & Agenda Penelitian Selanjutnya</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+          <div style="background: var(--white); border-radius: var(--r-lg); padding: 16px; border: 1px solid var(--rule);">
+              <div style="font-size: 12px; font-weight: 700; color: var(--maroon); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em;">🔴 Keterbatasan Penelitian</div>
+              <ul style="font-size: 12px; color: var(--ink2); line-height: 1.8; padding-left: 20px;">
+                  <li><strong>Periode Penelitian:</strong> Hanya 4 tahun (2020-2023), belum mencakup siklus ekonomi yang lebih panjang.</li>
+                  <li><strong>Variabel Penelitian:</strong> Hanya 3 variabel makroekonomi dan 3 indikator aktivitas pasar.</li>
+                  <li><strong>Data SID:</strong> Diproyeksikan secara geometrik dari data tahunan KSEI (bukan data bulanan aktual).</li>
+                  <li><strong>Metode Analisis:</strong> PLS-SEM bersifat prediktif, bukan konfirmatori (berbeda dengan CB-SEM).</li>
+                  <li><strong>Objek Penelitian:</strong> Tidak membedakan antar sektor industri (agregat IHSG).</li>
+              </ul>
+          </div>
+          <div style="background: var(--white); border-radius: var(--r-lg); padding: 16px; border: 1px solid var(--rule);">
+              <div style="font-size: 12px; font-weight: 700; color: var(--sage); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em;">🟢 Agenda Penelitian Selanjutnya</div>
+              <ul style="font-size: 12px; color: var(--ink2); line-height: 1.8; padding-left: 20px;">
+                  <li><strong>Perpanjang Periode:</strong> Gunakan data 2015-2025 untuk menangkap siklus ekonomi lebih panjang.</li>
+                  <li><strong>Tambahkan Variabel:</strong> Harga minyak dunia, harga emas, indeks global, kebijakan pemerintah.</li>
+                  <li><strong>Analisis Sektoral:</strong> Bandingkan antar sektor industri (perbankan, properti, teknologi, energi).</li>
+                  <li><strong>Metode Lain:</strong> Gunakan ARDL, VECM, atau GMM untuk analisis hubungan jangka panjang.</li>
+                  <li><strong>Variabel Moderasi:</strong> Uji moderasi literasi keuangan, digitalisasi, atau kebijakan moneter.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+
   <!-- FOOTER AKADEMIS -->
   <footer class="academic-footer">
     <strong>Catatan Sumber Data:</strong><br>
@@ -822,8 +1059,10 @@ const MASTER = [
 ];
 
 /* Global Chart instances */
-let chartY, chartZ, chartGrowth, chartX;
-let chartInflasi, chartBiRate, chartKurs, chartVolSing, chartFreqSing;
+let chartY, chartZ, chartX;
+let chartInflasi, chartBiRate, chartKurs, chartVolSing, chartFreqSing, chartSidSing, chartGrowthSing;
+let chartScatVol, chartScatInf;
+let chartComparison, chartDonut;
 
 Chart.defaults.font.family = "'DM Sans', sans-serif";
 const cOpt = { responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false} };
@@ -832,6 +1071,14 @@ const f0 = v => Math.round(v).toLocaleString('id-ID');
 const f2 = v => (+v).toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2});
 const mean = a => a.length ? a.reduce((s,v)=>s+v,0)/a.length : 0;
 const minMax = a => a.length ? `${Math.min(...a).toLocaleString('id-ID')} - ${Math.max(...a).toLocaleString('id-ID')}` : '-';
+
+// Hitung Standard Deviation (Sample)
+const stdDev = a => {
+  if (a.length <= 1) return 0;
+  const m = mean(a);
+  const variance = a.reduce((sq, n) => sq + Math.pow(n - m, 2), 0) / (a.length - 1);
+  return Math.sqrt(variance);
+};
 
 const pearson = (x,y) => {
   if (!x.length || !y.length) return 0;
@@ -870,19 +1117,60 @@ function renderDashboard(dataArray) {
     freq: dataArray.map(r=>r[6]), sid: dataArray.map(r=>r[7]), kap: dataArray.map(r=>r[8]), grw: dataArray.map(r=>r[9])
   };
 
-  document.getElementById('n-obs').textContent = dataArray.length;
+  const nObs = dataArray.length;
+  document.getElementById('n-obs-head').textContent = nObs;
 
-  // 2. Summary Cards
-  document.getElementById('s-ihsg').textContent = f0(mean(C.ihsg)); document.getElementById('r-ihsg').textContent = minMax(C.ihsg);
-  document.getElementById('s-kap').textContent = f0(mean(C.kap));   document.getElementById('r-kap').textContent = minMax(C.kap);
-  document.getElementById('s-inf').textContent = f2(mean(C.inf));   document.getElementById('r-inf').textContent = minMax(C.inf);
-  document.getElementById('s-bi').textContent = f2(mean(C.bi));     document.getElementById('r-bi').textContent = minMax(C.bi);
-  document.getElementById('s-vol').textContent = f0(mean(C.vol));   document.getElementById('r-vol').textContent = minMax(C.vol);
-  document.getElementById('s-freq').textContent = f0(mean(C.freq)); document.getElementById('r-freq').textContent = minMax(C.freq);
-  document.getElementById('s-sid').textContent = f2(mean(C.sid));   document.getElementById('r-sid').textContent = minMax(C.sid);
-  document.getElementById('s-grw').textContent = f2(mean(C.grw));   document.getElementById('r-grw').textContent = minMax(C.grw);
+  // 2. Summary Cards 1 & 2
+  document.getElementById('s-ihsg').textContent = f0(mean(C.ihsg)); 
+  document.getElementById('r-ihsg').textContent = minMax(C.ihsg);
+  document.getElementById('s-kap').textContent = f0(mean(C.kap));   
+  document.getElementById('r-kap').textContent = minMax(C.kap);
+  document.getElementById('s-inf').textContent = f2(mean(C.inf));   
+  document.getElementById('r-inf').textContent = minMax(C.inf);
+  document.getElementById('s-bi').textContent = f2(mean(C.bi));     
+  document.getElementById('r-bi').textContent = minMax(C.bi);
 
-  // 3. Matriks Korelasi
+  document.getElementById('s-vol').textContent = f0(mean(C.vol));   
+  document.getElementById('r-vol').textContent = minMax(C.vol);
+  document.getElementById('s-freq').textContent = f0(mean(C.freq)); 
+  document.getElementById('r-freq').textContent = minMax(C.freq);
+  document.getElementById('s-sid').textContent = f2(mean(C.sid));   
+  document.getElementById('r-sid').textContent = minMax(C.sid);
+  document.getElementById('s-grw').textContent = f2(mean(C.grw));   
+  document.getElementById('r-grw').textContent = minMax(C.grw);
+
+  // 3. TABEL STATISTIK DESKRIPTIF DETAIL
+  const descVars = [
+    { l: 'IHSG (Poin)', arr: C.ihsg, isDec: false },
+    { l: 'Kapitalisasi Pasar (Triliun)', arr: C.kap, isDec: true },
+    { l: 'Volume Transaksi (Juta Lembar)', arr: C.vol, isDec: false },
+    { l: 'Frekuensi Perdagangan (Ribu Trx)', arr: C.freq, isDec: false },
+    { l: 'Jumlah Investor / SID (Juta Orang)', arr: C.sid, isDec: true },
+    { l: 'Pertumbuhan SID (%)', arr: C.grw, isDec: true },
+    { l: 'Inflasi YoY (%)', arr: C.inf, isDec: true },
+    { l: 'Suku Bunga BI7DRR (%)', arr: C.bi, isDec: true },
+    { l: 'Nilai Tukar Rupiah / Kurs (IDR)', arr: C.kurs, isDec: false }
+  ];
+  const descBody = document.getElementById('descStatsBody'); descBody.innerHTML = '';
+  descVars.forEach(v => {
+    let tr = document.createElement('tr');
+    let min = Math.min(...v.arr);
+    let max = Math.max(...v.arr);
+    let avg = mean(v.arr);
+    let sd = stdDev(v.arr);
+    let fmt = v.isDec ? f2 : f0;
+    tr.innerHTML = `
+      <td class="txt-left">${v.l}</td>
+      <td>${nObs}</td>
+      <td>${fmt(min)}</td>
+      <td>${fmt(max)}</td>
+      <td>${fmt(avg)}</td>
+      <td>${fmt(sd)}</td>
+    `;
+    descBody.appendChild(tr);
+  });
+
+  // 4. Matriks Korelasi
   const CORR_VARS = [
     { k:'ihsg', l:'IHSG', arr:C.ihsg }, { k:'kap', l:'Kapitalisasi', arr:C.kap },
     { k:'inf', l:'Inflasi', arr:C.inf }, { k:'bi', l:'BI Rate', arr:C.bi }, { k:'kurs', l:'Kurs', arr:C.kurs },
@@ -901,7 +1189,7 @@ function renderDashboard(dataArray) {
     tr.innerHTML = cells; cmBody.appendChild(tr);
   });
 
-  // 4. Data Table
+  // 5. Data Table
   const dtBody = document.getElementById('dtBody'); dtBody.innerHTML = '';
   dataArray.forEach(r => {
     let tr = document.createElement('tr');
@@ -909,14 +1197,17 @@ function renderDashboard(dataArray) {
     dtBody.appendChild(tr);
   });
 
-  // 5. Destroy old charts if exist
-  if(chartY) chartY.destroy(); if(chartZ) chartZ.destroy();
-  if(chartGrowth) chartGrowth.destroy(); if(chartX) chartX.destroy();
+  // 6. Destroy old charts if exist
+  if(chartY) chartY.destroy(); if(chartZ) chartZ.destroy(); if(chartX) chartX.destroy();
   if(chartInflasi) chartInflasi.destroy(); if(chartBiRate) chartBiRate.destroy();
   if(chartKurs) chartKurs.destroy(); if(chartVolSing) chartVolSing.destroy();
-  if(chartFreqSing) chartFreqSing.destroy();
+  if(chartFreqSing) chartFreqSing.destroy(); if(chartSidSing) chartSidSing.destroy();
+  if(chartGrowthSing) chartGrowthSing.destroy();
+  if(chartScatVol) chartScatVol.destroy(); if(chartScatInf) chartScatInf.destroy();
+  if(chartComparison) chartComparison.destroy();
+  if(chartDonut) chartDonut.destroy();
 
-  // 6. Draw SINGLE Charts (Baru untuk keperluan Screenshot)
+  // 7. Draw SINGLE Charts
   chartInflasi = new Chart(document.getElementById('chart_inflasi'), {
     type: 'line', data: { labels: C.prd, datasets: [{ label: 'Inflasi (%)', data: C.inf, borderColor: '#7a1f2e', backgroundColor: 'rgba(122,31,46,0.1)', fill: true, borderWidth: 2, tension: 0.3, pointRadius: 1 }] },
     options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: v => v + '%' } } } }
@@ -942,7 +1233,30 @@ function renderDashboard(dataArray) {
     options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: tFmt } } } }
   });
 
-  // 7. Draw COMBINED Charts (Grafik yang lama)
+  // Hitung Garis Tren Eksponensial untuk SID
+  const nData = C.sid.length;
+  let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+  const lnSid = C.sid.map(v => Math.log(v));
+  for (let i = 0; i < nData; i++) { sumX += i; sumY += lnSid[i]; sumXY += i * lnSid[i]; sumXX += i * i; }
+  const B = (nData * sumXY - sumX * sumY) / (nData * sumXX - sumX * sumX);
+  const lnA = (sumY - B * sumX) / nData;
+  const A = Math.exp(lnA);
+  const sidTrendData = C.sid.map((_, i) => A * Math.exp(B * i));
+
+  chartSidSing = new Chart(document.getElementById('chart_sid_single'), {
+    type: 'line', data: { labels: C.prd, datasets: [
+        { label: 'SID Aktual (Juta)', data: C.sid, borderColor: '#2a4a3a', backgroundColor: 'rgba(42,74,58,0.1)', fill: true, borderWidth: 2, tension: 0.3, pointRadius: 1 },
+        { label: 'Tren Eksponensial', data: sidTrendData, borderColor: '#b8964a', backgroundColor: 'transparent', borderDash: [5, 5], borderWidth: 2, tension: 0, pointRadius: 0 }
+    ] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: tFmt } } } }
+  });
+
+  chartGrowthSing = new Chart(document.getElementById('chart_growth'), {
+    type:'bar', data:{ labels:C.prd, datasets:[{ label:'Pertumbuhan SID (%)', data:C.grw, backgroundColor:'#2a4a3a', borderRadius:2 }]},
+    options:{...cOpt, plugins: [yearBoundaryPlugin], scales:{ y:{ ticks:{callback:v=>v+'%'} } } }
+  });
+
+  // 8. Draw COMBINED Charts
   chartY = new Chart(document.getElementById('chart_y'),{
     type:'line', data:{ labels:C.prd, datasets:[
       { label:'IHSG', data:C.ihsg, borderColor:'#1e3f6e', borderWidth:2.5, pointRadius:0, tension:.3, yAxisID:'y' },
@@ -962,12 +1276,6 @@ function renderDashboard(dataArray) {
     plugins: [yearBoundaryPlugin]
   });
 
-  chartGrowth = new Chart(document.getElementById('chart_growth'),{
-    type:'bar', data:{ labels:C.prd, datasets:[{ label:'Pertumbuhan SID (%)', data:C.grw, backgroundColor:'#2a4a3a', borderRadius:2 }]},
-    options:{...cOpt, scales:{ y:{ ticks:{callback:v=>v+'%'} } } },
-    plugins: [yearBoundaryPlugin]
-  });
-
   chartX = new Chart(document.getElementById('chart_x'),{
     type:'line', data:{ labels:C.prd, datasets:[
       { label:'IHSG', data:C.ihsg, borderColor:'#1e3f6e', borderWidth:2.5, pointRadius:0, tension:.3, yAxisID:'y' },
@@ -977,6 +1285,131 @@ function renderDashboard(dataArray) {
     options:{...cOpt, scales:{ y:{ position:'left', ticks:{callback:tFmt} }, y1:{ position:'right', ticks:{callback:v=>v+'%'}, grid:{drawOnChartArea:false} } }},
     plugins: [yearBoundaryPlugin]
   });
+
+  // 9. Draw SCATTER Plots
+  const scatterVolData = C.vol.map((v, i) => ({ x: v, y: C.ihsg[i] }));
+  chartScatVol = new Chart(document.getElementById('chart_scatter_vol_ihsg'), {
+    type: 'scatter',
+    data: { datasets: [{ label: 'Volume vs IHSG', data: scatterVolData, backgroundColor: '#1e3f6e', pointRadius: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: { display: true, text: 'Volume (Juta Lembar)' }, ticks: { callback: tFmt } }, y: { title: { display: true, text: 'IHSG (Poin)' }, ticks: { callback: tFmt } } } }
+  });
+
+  const scatterInfData = C.inf.map((v, i) => ({ x: v, y: C.ihsg[i] }));
+  chartScatInf = new Chart(document.getElementById('chart_scatter_inf_ihsg'), {
+    type: 'scatter',
+    data: { datasets: [{ label: 'Inflasi vs IHSG', data: scatterInfData, backgroundColor: '#7a1f2e', pointRadius: 4 }] },
+    options: { responsive: true, maintainAspectRatio: false, scales: { x: { title: { display: true, text: 'Inflasi (%)' }, ticks: { callback: v => v + '%' } }, y: { title: { display: true, text: 'IHSG (Poin)' }, ticks: { callback: tFmt } } } }
+  });
+
+  // ==========================================
+  // ADDITIONS: COMPARISON, DONUT, HEATMAP
+  // ==========================================
+  
+  // 1. CHART PERBANDINGAN 3 PERIODE
+  const dataPre = C.ihsg.slice(0, 2);
+  const dataPandemic = C.ihsg.slice(2, 26);
+  const dataPost = C.ihsg.slice(26, 48);
+  
+  const ctxComparison = document.getElementById('chart_comparison');
+  if (ctxComparison) {
+      chartComparison = new Chart(ctxComparison.getContext('2d'), {
+          type: 'bar',
+          data: {
+              labels: ['Pra-Pandemi (Jan-Feb 2020)', 'Pandemi (Mar 2020 - Des 2021)', 'Pasca-Pandemi (Jan 2022 - Des 2023)'],
+              datasets: [{
+                  label: 'Rata-rata IHSG',
+                  data: [mean(dataPre), mean(dataPandemic), mean(dataPost)],
+                  backgroundColor: ['#1e3f6e', '#7a1f2e', '#2a4a3a'],
+                  borderRadius: 4,
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: { y: { beginAtZero: false, ticks: { callback: tFmt } } }
+          }
+      });
+  }
+
+  // 2. DONUT CHART AKTIVITAS PASAR
+  const ctxDonut = document.getElementById('chart_donut');
+  if (ctxDonut) {
+      const mVol = mean(C.vol);
+      const mFreq = mean(C.freq);
+      const mSid = mean(C.sid);
+
+      chartDonut = new Chart(ctxDonut.getContext('2d'), {
+          type: 'doughnut',
+          data: {
+              labels: ['Volume', 'Frekuensi', 'SID'],
+              datasets: [{
+                  // Normalisasi skala visual agar tidak tertelan angka Volume
+                  data: [mVol / 10000, mFreq / 1000, mSid],
+                  backgroundColor: ['#717490', '#081628', '#2a4a3a'],
+                  borderWidth: 0,
+              }]
+          },
+          options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                  legend: { position: 'bottom' },
+                  tooltip: {
+                      callbacks: {
+                          label: function(context) {
+                              // Override tooltip untuk menampilkan nilai asli
+                              let label = context.label || '';
+                              let realVal = 0;
+                              let suffix = '';
+                              if (context.dataIndex === 0) { realVal = mVol; suffix = ' Juta Lembar'; }
+                              if (context.dataIndex === 1) { realVal = mFreq; suffix = ' Ribu Trx'; }
+                              if (context.dataIndex === 2) { realVal = mSid; suffix = ' Juta Orang'; }
+                              return `${label}: ${realVal.toLocaleString('id-ID', {maximumFractionDigits:2})}${suffix}`;
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  }
+
+  // 3. HEATMAP KORELASI RENDERING
+  const corrVarsObj = [
+      { label: 'IHSG', data: C.ihsg }, { label: 'Kapitalisasi', data: C.kap },
+      { label: 'Inflasi', data: C.inf }, { label: 'BI Rate', data: C.bi },
+      { label: 'Kurs', data: C.kurs }, { label: 'Volume', data: C.vol },
+      { label: 'Frekuensi', data: C.freq }, { label: 'SID', data: C.sid }
+  ];
+  
+  const heatmapData = corrVarsObj.map((row, i) => 
+      corrVarsObj.map((col, j) => i === j ? 1 : pearson(row.data, col.data))
+  );
+
+  const hmContainer = document.getElementById('heatmap-container');
+  if (hmContainer) {
+      let hmHTML = '<table class="corr-matrix" style="width: 100%; min-width: 600px; border-collapse: collapse;"><thead><tr><th style="background: var(--navy-deep); position: sticky; left: 0; z-index: 2;"></th>';
+      corrVarsObj.forEach(v => hmHTML += `<th style="padding: 10px; font-size: 10px; font-weight: 600; letter-spacing: .06em; color: rgba(255,255,255,0.5); text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08);">${v.label}</th>`);
+      hmHTML += '</tr></thead><tbody>';
+      heatmapData.forEach((row, i) => {
+          hmHTML += `<tr><td style="padding: 10px; text-align: left; font-size: 11px; font-family: \'DM Sans\', sans-serif; color: rgba(255,255,255,0.7); border-right: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.03); background: var(--navy-deep); position: sticky; left: 0; z-index: 1;">${corrVarsObj[i].label}</td>`;
+          row.forEach(val => {
+              let r = val;
+              let bg = '';
+              let color = '#fff';
+              if (r === 1) { bg = 'rgba(255,255,255,0.03)'; color = 'rgba(255,255,255,0.2)'; }
+              else if (r >= 0.5) { bg = '#1e3f6e'; color = '#fff'; }
+              else if (r > 0) { bg = '#32588c'; color = '#fff'; }
+              else if (r <= -0.5) { bg = '#7a1f2e'; color = '#fff'; }
+              else { bg = '#592c35'; color = '#fff'; }
+
+              hmHTML += `<td style="padding: 10px; text-align: center; font-family: \'DM Mono\', monospace; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.03); background-color: ${bg}; color: ${color};">${r.toFixed(3)}</td>`;
+          });
+          hmHTML += '</tr>';
+      });
+      hmHTML += '</tbody></table>';
+      hmContainer.innerHTML = hmHTML;
+  }
 }
 
 function applyFilter() {
@@ -984,13 +1417,11 @@ function applyFilter() {
   if (val === 'ALL') {
     renderDashboard(MASTER);
   } else {
-    // Filter rows based on string match for the year part of the label (e.g., "-20")
     const filtered = MASTER.filter(row => row[0].endsWith('-' + val));
     renderDashboard(filtered);
   }
 }
 
-// Initial render
 window.onload = function() {
   renderDashboard(MASTER);
 };
