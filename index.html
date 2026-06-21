@@ -41,6 +41,7 @@ html { scroll-behavior:smooth; }
 body {
   font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--ink);
   font-size:14px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x: hidden;
 }
 
 /* ─── OPTIMASI CETAK PDF ─────────────────────────────────────── */
@@ -52,21 +53,16 @@ body {
   .cbox, .scard, .pm-wrap, .dtable-wrap { 
     box-shadow: none !important; border: 1px solid #ccc !important; break-inside: avoid; margin-bottom: 24px; 
   }
-  
-  /* Reset Total Matriks Korelasi untuk Tinta Print */
   .corr-matrix-wrap { background: #fff !important; border: 1px solid #ccc !important; box-shadow: none !important; break-inside: avoid; margin-bottom: 24px; }
   .corr-matrix-head { background: #f0f0f0 !important; color: #000 !important; border-bottom: 2px solid #000 !important; }
   .corr-matrix th { background: #f0f0f0 !important; color: #000 !important; border-bottom: 1px solid #000 !important; }
   .corr-matrix td { background: #fff !important; color: #000 !important; border-top: 1px solid #ddd !important; }
   .corr-matrix td:first-child { color: #000 !important; border-right: 1px solid #ddd !important; font-weight: bold; }
-  
-  /* Warna Korelasi Khusus Kertas (High Contrast) */
   .c-diag { color: #aaa !important; }
   .c-ps { color: #004085 !important; font-weight: bold !important; }
   .c-pw { color: #007bff !important; }
   .c-ns { color: #721c24 !important; font-weight: bold !important; }
   .c-nw { color: #dc3545 !important; }
-
   .dtable thead { background: #f0f0f0 !important; color: #000 !important; border-bottom: 2px solid #000; }
   .dtable thead th { color: #000 !important; }
   .chart-wrapper { page-break-inside: avoid; }
@@ -75,18 +71,19 @@ body {
 }
 
 /* ─── PAGE WRAPPER & TOP BAR ─────────────────────────────────── */
-.page { max-width:1200px; margin:0 auto; padding:40px 24px 80px; }
+.page { max-width:1200px; margin:0 auto; padding:40px 24px 80px; width: 100%; }
 .topbar {
   background:var(--navy-deep); padding:0 24px; height:48px;
   display:flex; align-items:center; justify-content:space-between;
   position:sticky; top:0; z-index:100; border-bottom:1px solid rgba(184,150,74,.25);
 }
 .topbar-brand { font-family:'Playfair Display',serif; font-size:14px; color:var(--gold-lt); letter-spacing:.04em; }
-.topbar-actions { display:flex; gap:8px; }
+.topbar-actions { display:flex; gap:8px; align-items:center; }
 .tb-btn {
   display:inline-flex; align-items:center; gap:6px; padding:6px 14px;
   font-size:12px; font-weight:600; font-family:'DM Sans',sans-serif;
   cursor:pointer; border-radius:4px; border:none; transition:all .2s;
+  white-space: nowrap;
 }
 .tb-btn-primary { background:var(--gold); color:var(--navy-deep); }
 .tb-btn-primary:hover { background:var(--gold-lt); }
@@ -104,7 +101,7 @@ body {
 .pm-wrap { background:var(--white); border-radius:var(--r-lg); border:1px solid var(--rule); box-shadow:var(--shadow); padding:32px 24px 40px; margin-bottom:48px; }
 .pm-head { text-align:center; font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--navy); margin-bottom:32px; }
 .pm-flex { display:flex; align-items:center; justify-content:center; gap:20px; flex-wrap:wrap; position:relative; z-index:2; }
-.pm-node { background:var(--cream); border:2px solid var(--rule); border-radius:var(--r-lg); padding:20px; width:260px; text-align:center; box-shadow:0 2px 8px rgba(13,31,60,.04); }
+.pm-node { background:var(--cream); border:2px solid var(--rule); border-radius:var(--r-lg); padding:20px; width:260px; max-width:100%; text-align:center; box-shadow:0 2px 8px rgba(13,31,60,.04); }
 .pm-node-x { border-color:var(--maroon); }
 .pm-node-z { border-color:var(--sage); }
 .pm-node-y { border-color:var(--navy); }
@@ -114,9 +111,9 @@ body {
 .pm-badge-y { background:rgba(13,31,60,.08); color:var(--navy); }
 .pm-title { font-weight:700; font-size:14px; color:var(--ink); margin-bottom:12px; border-bottom:1px solid var(--rule); padding-bottom:12px; }
 .pm-list { text-align:left; font-size:12px; color:var(--ink2); line-height:2; padding-left:24px; margin:0; }
-.pm-arrow { font-size:24px; color:var(--gold); }
+.pm-arrow { font-size:24px; color:var(--gold); transform: rotate(0deg); transition: transform 0.3s ease; }
 .pm-direct-path { position:relative; width:100%; max-width:600px; margin:16px auto 0; height:24px; border-bottom:2px dashed var(--gold-lt); border-left:2px dashed var(--gold-lt); border-right:2px dashed var(--gold-lt); border-radius:0 0 12px 12px; }
-.pm-direct-label { position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); background:var(--white); padding:0 10px; font-size:10px; font-weight:700; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; }
+.pm-direct-label { position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); background:var(--white); padding:0 10px; font-size:10px; font-weight:700; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; text-align:center; white-space:nowrap; }
 
 /* ─── SECTION LABELS ─────────────────────────────────────────── */
 .sec { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink3); font-weight:700; display:flex; align-items:center; gap:12px; margin-bottom:18px; margin-top:48px; }
@@ -131,7 +128,7 @@ body {
 .scard-x::before  { background:linear-gradient(90deg,var(--maroon),#c0404f); }
 .scard-z::before  { background:linear-gradient(90deg,var(--sage),#4a7a5a); }
 .scard-label { font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); font-weight:600; margin-bottom:8px; }
-.scard-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; line-height:1; margin-bottom:8px; color:var(--navy-deep); }
+.scard-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; line-height:1; margin-bottom:8px; color:var(--navy-deep); word-break: break-word; }
 .scard-sub { font-size:11px; color:var(--ink3); line-height:1.5; }
 .scard-badge { display:inline-block; margin-top:12px; font-size:9px; font-weight:700; letter-spacing:.08em; padding:3px 8px; border-radius:4px; }
 .badge-y { background:rgba(13,31,60,.08); color:var(--navy); }
@@ -139,8 +136,8 @@ body {
 .badge-z { background:var(--sage-lt); color:var(--sage); }
 
 /* ─── CHARTS ─────────────────────────────────────────────────── */
-.chart-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px; }
-.cbox { background:var(--white); border-radius:var(--r-lg); border:1px solid var(--rule); box-shadow:var(--shadow); padding:22px; }
+.chart-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; margin-bottom:20px; }
+.cbox { background:var(--white); border-radius:var(--r-lg); border:1px solid var(--rule); box-shadow:var(--shadow); padding:22px; overflow: hidden; }
 .cbox-full { grid-column: 1 / -1; }
 .cbox-title { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--navy); margin-bottom:4px; }
 .cbox-sub { font-size:11px; color:var(--ink3); line-height:1.6; margin-bottom:16px; }
@@ -151,9 +148,9 @@ body {
 .corr-matrix-head { padding:14px 20px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-lt); font-weight:600; border-bottom:1px solid rgba(255,255,255,.07); }
 .corr-matrix { border-collapse:collapse; width: 100%; }
 .corr-matrix th { padding:10px; font-size:10px; font-weight:600; letter-spacing:.06em; color:rgba(255,255,255,.5); text-align:center; background:rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.08); }
-.corr-matrix th:first-child { text-align:left; padding-left:20px; }
+.corr-matrix th:first-child { text-align:left; padding-left:20px; position:sticky; left:0; background:var(--navy-deep); z-index:2; }
 .corr-matrix td { padding:10px; text-align:center; font-family:'DM Mono',monospace; font-size:12px; color:var(--cream); border-top:1px solid rgba(255,255,255,.03); }
-.corr-matrix td:first-child { text-align:left; padding-left:20px; font-family:'DM Sans',sans-serif; font-size:11px; color:rgba(255,255,255,.7); font-weight:500; border-right:1px solid rgba(255,255,255,.07); }
+.corr-matrix td:first-child { text-align:left; padding-left:20px; font-family:'DM Sans',sans-serif; font-size:11px; color:rgba(255,255,255,.7); font-weight:500; border-right:1px solid rgba(255,255,255,.07); position:sticky; left:0; background:var(--navy-deep); z-index:2; }
 .c-diag  { color:rgba(255,255,255,.2) !important; }
 .c-ps    { color:#6ea8d8 !important; font-weight:700; }
 .c-pw    { color:#a3c5e0 !important; }
@@ -161,27 +158,65 @@ body {
 .c-nw    { color:#e0a0a0 !important; }
 
 /* ─── DATA TABLE ─────────────────────────────────────────────── */
-.dtable-wrap { background:var(--white); border-radius:var(--r-lg); border:1px solid var(--rule); box-shadow:var(--shadow); overflow-x:auto; }
+.dtable-wrap { background:var(--white); border-radius:var(--r-lg); border:1px solid var(--rule); box-shadow:var(--shadow); overflow-x:auto; -webkit-overflow-scrolling: touch; width: 100%; }
+/* Menghapus min-width paksa agar tabel bisa mengecil sesuai kolom */
 .dtable { width:100%; border-collapse:collapse; font-size:12px; }
 .dtable thead { background:var(--navy); }
-.dtable thead th { padding:12px 14px; color:rgba(255,255,255,.8); font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; white-space:nowrap; text-align:right; border-right:1px solid rgba(255,255,255,.1); }
+/* Menghapus white-space: nowrap agar teks bisa turun ke bawah saat layar sempit */
+.dtable thead th { padding:12px 14px; color:rgba(255,255,255,.8); font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:600; text-align:right; border-right:1px solid rgba(255,255,255,.1); }
 .dtable thead th:first-child, .dtable tbody td.txt-left { text-align:left; }
 .dtable tbody tr { border-bottom:1px solid var(--rule); }
 .dtable tbody tr:hover { background:var(--cream); }
-.dtable tbody td { padding:10px 14px; color:var(--ink2); text-align:right; font-family:'DM Mono',monospace; border-right:1px solid var(--rule); white-space:nowrap; }
+/* Menghapus white-space: nowrap agar teks pada VIF dan F-Square bisa membungkus rapi */
+.dtable tbody td { padding:10px 14px; color:var(--ink2); text-align:right; font-family:'DM Mono',monospace; border-right:1px solid var(--rule); }
 .dtable tbody td:first-child { text-align:left; font-family:'DM Sans',sans-serif; font-weight:600; color:var(--navy); }
 .status-pass { color: var(--sage); font-weight: 700; background: var(--sage-lt); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-family: 'DM Sans', sans-serif;}
 .status-warn { color: var(--maroon); font-weight: 700; background: var(--maroon-lt); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-family: 'DM Sans', sans-serif;}
 
 /* ─── FOOTER ─────────────────────────────────────────────────── */
-.academic-footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--rule); text-align: center; font-size: 11.5px; color: var(--ink3); line-height: 1.8; }
+.academic-footer { margin-top: 60px; padding-top: 24px; border-bottom: 24px; border-top: 1px solid var(--rule); text-align: center; font-size: 11.5px; color: var(--ink3); line-height: 1.8; }
 .academic-footer strong { color: var(--ink2); font-weight: 600; }
 
-/* ─── MISC ───────────────────────────────────────────────────── */
 #toast { position:fixed; bottom:28px; right:28px; background:var(--navy-deep); border-left:4px solid var(--gold); padding:16px 24px; border-radius:var(--r); box-shadow:var(--shadow-lg); font-size:14px; color:var(--cream); opacity:0; pointer-events:none; transition:all .3s; transform:translateY(10px); z-index:999; }
 #toast.show { opacity:1; transform:translateY(0); }
-@media (max-width:900px) { .summary-grid { grid-template-columns:repeat(2,1fr); } .chart-grid { grid-template-columns:1fr; } .pm-direct-path { display:none; } }
-@media (max-width:600px) { .summary-grid { grid-template-columns:1fr; } }
+
+/* ─── RESPONSIVE / MOBILE OPTIMIZATION ───────────────────────── */
+.grid-halves { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+@media (max-width: 992px) {
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .pm-flex { flex-direction: column; }
+  .pm-arrow { transform: rotate(90deg); margin: -5px 0; }
+  .pm-direct-path { display: none; }
+  /* Memecah layout split layar pada ukuran medium agar tabel tidak tercekik */
+  .grid-halves { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .header { grid-template-columns: 1fr; gap: 16px; align-items: flex-start; margin: 24px 0; }
+  .header h1 { font-size: 26px; }
+  .header-meta { text-align: left; padding-top: 16px; border-top: 1px dashed var(--rule); }
+  .header-meta > div { border-bottom: none; margin-bottom: 8px; padding-bottom: 0; }
+  
+  .topbar { height: auto; flex-direction: column; align-items: flex-start; padding: 12px 20px; gap: 12px; }
+  .topbar-actions { width: 100%; justify-content: space-between; }
+  
+  .chart-grid { grid-template-columns: 1fr; }
+  
+  .page { padding: 20px 16px 60px; }
+  .cbox { padding: 16px; }
+}
+
+@media (max-width: 480px) {
+  .summary-grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 22px; }
+  .pm-node { width: 100%; padding: 16px; }
+  .topbar-actions { flex-direction: column; align-items: stretch; }
+  .topbar-actions select, .topbar-actions button { width: 100%; text-align: center; justify-content: center; }
+  .sec { font-size: 11px; white-space: normal; line-height: 1.4; align-items: flex-start; }
+  .sec::after { display: none; }
+  .chart-wrapper { height: 220px; }
+}
 </style>
 </head>
 <body>
@@ -189,14 +224,14 @@ body {
 <div class="topbar">
   <div class="topbar-brand">DASHBOARD PLS-SEM — SKRIPSI</div>
   <div class="topbar-actions">
-    <select id="yearFilter" onchange="applyFilter()" style="padding:4px 8px; border-radius:4px; font-family:'DM Sans'; font-size:12px; border:none; outline:none; cursor:pointer;">
+    <select id="yearFilter" onchange="applyFilter()" style="padding:6px 10px; border-radius:4px; font-family:'DM Sans'; font-size:12px; border:none; outline:none; cursor:pointer; background:var(--white);">
       <option value="ALL">Semua Tahun (2020-2023)</option>
       <option value="20">Tahun 2020</option>
       <option value="21">Tahun 2021</option>
       <option value="22">Tahun 2022</option>
       <option value="23">Tahun 2023</option>
     </select>
-    <button class="tb-btn tb-btn-primary" onclick="exportMasterCSV()">⬇ CSV</button>
+    <button class="tb-btn tb-btn-primary" onclick="exportMasterCSV()">⬇ CSV Master</button>
     <button class="tb-btn" style="background:var(--cream);color:var(--navy)" onclick="window.print()">🖨 PDF</button>
   </div>
 </div>
@@ -316,20 +351,68 @@ body {
     </div>
   </div>
 
-  <!-- CHARTS -->
-  <div class="sec"><span class="sec-num">03</span> Visualisasi Tren Struktural (2020–2023)</div>
+  <!-- BAGIAN BARU: GRAFIK INDIVIDUAL UNTUK SCREENSHOT -->
+  <div class="sec"><span class="sec-num">03</span> Grafik Individual (Untuk Screenshot Lampiran Skripsi)</div>
+  <p style="font-size: 12px; color: var(--ink3); margin-top: -12px; margin-bottom: 16px;">Gunakan bagian ini untuk memotong gambar (screenshot) per variabel sesuai kebutuhan penulisan deskripsi data.</p>
+  
+  <div class="chart-grid">
+    <!-- Gambar 4.5: Inflasi -->
+    <div class="cbox">
+      <div class="cbox-title">Tren Inflasi YoY (%)</div>
+      <div class="cbox-sub">Gambar 4.5 - Visualisasi pergerakan inflasi (2020-2023)</div>
+      <div class="chart-wrapper"><canvas id="chart_inflasi"></canvas></div>
+    </div>
+    
+    <!-- Gambar 4.6: Suku Bunga -->
+    <div class="cbox">
+      <div class="cbox-title">Tren Suku Bunga BI7DRR (%)</div>
+      <div class="cbox-sub">Gambar 4.6 - Visualisasi pergerakan suku bunga acuan (2020-2023)</div>
+      <div class="chart-wrapper"><canvas id="chart_birate"></canvas></div>
+    </div>
+
+    <!-- Gambar 4.7: Nilai Tukar -->
+    <div class="cbox">
+      <div class="cbox-title">Tren Nilai Tukar (Kurs Rupiah / USD)</div>
+      <div class="cbox-sub">Gambar 4.7 - Visualisasi pergerakan nilai tukar (2020-2023)</div>
+      <div class="chart-wrapper"><canvas id="chart_kurs"></canvas></div>
+    </div>
+
+    <!-- Gambar 4.8: Volume -->
+    <div class="cbox">
+      <div class="cbox-title">Tren Volume Transaksi (Juta Lembar)</div>
+      <div class="cbox-sub">Gambar 4.8 - Visualisasi pergerakan volume perdagangan (2020-2023)</div>
+      <div class="chart-wrapper"><canvas id="chart_volume_single"></canvas></div>
+    </div>
+
+    <!-- Gambar 4.9: Frekuensi -->
+    <div class="cbox">
+      <div class="cbox-title">Tren Frekuensi Perdagangan (Ribu Trx)</div>
+      <div class="cbox-sub">Gambar 4.9 - Visualisasi pergerakan frekuensi perdagangan (2020-2023)</div>
+      <div class="chart-wrapper"><canvas id="chart_frekuensi_single"></canvas></div>
+    </div>
+    
+    <!-- Gambar 4.11: Pertumbuhan SID -->
+    <div class="cbox">
+      <div class="cbox-title">Pertumbuhan Investor (SID) MoM (%)</div>
+      <div class="cbox-sub">Gambar 4.11 - Tingkat pertumbuhan gabungan bulanan.</div>
+      <div class="chart-wrapper"><canvas id="chart_growth"></canvas></div>
+    </div>
+  </div>
+
+  <!-- CHARTS GABUNGAN -->
+  <div class="sec"><span class="sec-num">04</span> Visualisasi Tren Struktural Gabungan (2020–2023)</div>
   <div class="chart-grid">
     
-    <!-- Y: Kinerja Pasar Modal -->
+    <!-- Y: Kinerja Pasar Modal (Gambar 4.12 & 4.13) -->
     <div class="cbox cbox-full">
       <div class="cbox-title">Kinerja Pasar Modal (Y): Tren IHSG dan Kapitalisasi Pasar</div>
-      <div class="cbox-sub">Garis putus-putus vertikal menandai pergantian tahun. Dual Y-Axis. Kiri: IHSG. Kanan: Kapitalisasi Pasar.</div>
+      <div class="cbox-sub">Garis putus-putus vertikal menandai pergantian tahun. Dual Y-Axis. Kiri: IHSG. Kanan: Kapitalisasi Pasar. (Gambar 4.12 & 4.13)</div>
       <div class="chart-wrapper"><canvas id="chart_y"></canvas></div>
     </div>
 
-    <!-- Z: Aktivitas Pasar -->
+    <!-- Z: Aktivitas Pasar (Gambar 4.8, 4.9, 4.10 Gabungan) -->
     <div class="cbox cbox-full">
-      <div class="cbox-title">Aktivitas Pasar (Z): Volume, Frekuensi, dan Jumlah Investor</div>
+      <div class="cbox-title">Aktivitas Pasar (Z): Volume, Frekuensi, dan Jumlah Investor (SID Gabungan)</div>
       <div class="cbox-sub">
         Garis putus-putus vertikal menandai pergantian tahun. Sumbu Kiri: Volume (Juta Lembar). Sumbu Kanan: Frekuensi & SID (Juta).<br>
         <strong style="color:var(--maroon)">DISCLAIMER METODOLOGI:</strong> Variabel Frekuensi pada grafik ini dinormalisasi (dibagi 1.000) murni untuk ekuivalensi visual skala. Pengujian statistik PLS-SEM tetap menggunakan nilai riil absolut (dalam satuan Ribu Transaksi).
@@ -337,15 +420,8 @@ body {
       <div class="chart-wrapper" style="height:320px;"><canvas id="chart_z"></canvas></div>
     </div>
 
-    <!-- Z: Pertumbuhan Investor -->
-    <div class="cbox">
-      <div class="cbox-title">Pertumbuhan Investor (SID) MoM (%)</div>
-      <div class="cbox-sub">Tingkat pertumbuhan gabungan bulanan.</div>
-      <div class="chart-wrapper"><canvas id="chart_growth"></canvas></div>
-    </div>
-
     <!-- X & Y: Makro vs IHSG -->
-    <div class="cbox">
+    <div class="cbox cbox-full">
       <div class="cbox-title">Makroekonomi (X) vs IHSG (Y)</div>
       <div class="cbox-sub">Sumbu Kiri: IHSG. Sumbu Kanan: Inflasi & BI Rate (%).</div>
       <div class="chart-wrapper"><canvas id="chart_x"></canvas></div>
@@ -354,11 +430,11 @@ body {
   </div>
 
   <!-- CORRELATION MATRIX -->
-  <div class="sec"><span class="sec-num">04</span> Matriks Korelasi Pearson (7 Variabel Inti)</div>
+  <div class="sec"><span class="sec-num">05</span> Matriks Korelasi Pearson (Gambar 4.14)</div>
   <div class="corr-matrix-wrap" style="margin-bottom: 48px;">
     <div class="corr-matrix-head">Validasi Hubungan Linear Antar Konstruk Model</div>
-    <div style="overflow-x:auto;">
-      <table class="corr-matrix">
+    <div style="overflow-x:auto; -webkit-overflow-scrolling:touch;">
+      <table class="corr-matrix" style="min-width: 800px;">
         <thead><tr id="cmHead"></tr></thead>
         <tbody id="cmBody"></tbody>
       </table>
@@ -366,9 +442,9 @@ body {
   </div>
 
   <!-- DATA MASTER TABLE -->
-  <div class="sec"><span class="sec-num">05</span> Dataset Master (<span id="n-obs">48</span> Observasi)</div>
+  <div class="sec"><span class="sec-num">06</span> Dataset Master (<span id="n-obs">48</span> Observasi)</div>
   <div class="dtable-wrap">
-    <table class="dtable">
+    <table class="dtable" style="min-width: 1000px; white-space: nowrap;">
       <thead>
         <tr>
           <th>Periode</th>
@@ -388,13 +464,13 @@ body {
   </div>
 
   <!-- HASIL PLS-SEM -->
-  <div class="sec"><span class="sec-num">06</span> Hasil Pengujian PLS-SEM (SmartPLS 4)</div>
+  <div class="sec"><span class="sec-num">07</span> Hasil Pengujian PLS-SEM (SmartPLS 4)</div>
 
   <!-- Outer Model Result Box -->
   <div class="cbox cbox-full" style="margin-bottom: 24px;">
     <div class="cbox-title" style="margin-bottom: 16px;">A. Evaluasi Outer Model (Convergent Validity & Reliability)</div>
     <div class="dtable-wrap">
-      <table class="dtable">
+      <table class="dtable" style="min-width: 700px; white-space: nowrap;">
         <thead>
           <tr>
             <th>Konstruk</th>
@@ -495,28 +571,50 @@ body {
         </table>
       </div>
 
-      <!-- R Square & F Square Grid inside Inner Model -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-        <div>
-          <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Koefisien Determinasi (R²)</div>
-          <table class="dtable">
-            <thead><tr><th>Konstruk Endogen</th><th>R-Square</th><th>Adj. R-Square</th></tr></thead>
+      <!-- Ringkasan Hipotesis -->
+      <div style="margin-bottom: 24px;">
+        <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Ringkasan Keputusan Hipotesis</div>
+        <div class="dtable-wrap">
+          <table class="dtable" style="min-width: 600px;">
+            <thead>
+              <tr><th>Hipotesis</th><th>Pernyataan Hipotesis</th><th>T-Stat</th><th>P-Value</th><th>Keputusan</th></tr>
+            </thead>
             <tbody>
-              <tr><td>Aktivitas Pasar (Z)</td><td>0.189</td><td>0.172</td></tr>
-              <tr><td>Kinerja Pasar (Y)</td><td>0.863</td><td>0.857</td></tr>
+              <tr><td><strong>H1</strong></td><td class="txt-left">Kondisi Makro (X) berpengaruh signifikan terhadap Aktivitas Pasar (Z)</td><td>5.083</td><td>0.000</td><td><span class="status-pass">H1 Diterima</span></td></tr>
+              <tr><td><strong>H2</strong></td><td class="txt-left">Kondisi Makro (X) berpengaruh signifikan terhadap Kinerja Pasar (Y)</td><td>4.162</td><td>0.000</td><td><span class="status-pass">H2 Diterima</span></td></tr>
+              <tr><td><strong>H3</strong></td><td class="txt-left">Aktivitas Pasar (Z) berpengaruh signifikan terhadap Kinerja Pasar (Y)</td><td>20.855</td><td>0.000</td><td><span class="status-pass">H3 Diterima</span></td></tr>
+              <tr style="background: var(--cream-dk);"><td><strong>H4</strong></td><td class="txt-left">Aktivitas Pasar (Z) memediasi pengaruh Kondisi Makro (X) terhadap Kinerja Pasar (Y)</td><td>5.342</td><td>0.000</td><td><span class="status-pass">H4 Diterima (Mediasi)</span></td></tr>
             </tbody>
           </table>
         </div>
+      </div>
+
+      <!-- R Square & F Square Grid inside Inner Model -->
+      <div class="grid-halves">
+        <div>
+          <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Koefisien Determinasi (R²)</div>
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Konstruk Endogen</th><th>R-Square</th><th>Adj. R-Square</th></tr></thead>
+              <tbody>
+                <tr><td>Aktivitas Pasar (Z)</td><td>0.189</td><td>0.172</td></tr>
+                <tr><td>Kinerja Pasar (Y)</td><td>0.863</td><td>0.857</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <div>
           <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">Effect Size (f²)</div>
-          <table class="dtable">
-            <thead><tr><th>Jalur Hubungan</th><th>f-Square</th><th>Kategori</th></tr></thead>
-            <tbody>
-              <tr><td>Makro (X) → Aktivitas (Z)</td><td>0.233</td><td>Sedang</td></tr>
-              <tr><td>Makro (X) → Kinerja (Y)</td><td>0.212</td><td>Sedang</td></tr>
-              <tr><td>Aktivitas (Z) → Kinerja (Y)</td><td><strong>4.082</strong></td><td>Sangat Besar</td></tr>
-            </tbody>
-          </table>
+          <div class="dtable-wrap">
+            <table class="dtable">
+              <thead><tr><th>Jalur Hubungan</th><th>f-Square</th><th>Kategori</th></tr></thead>
+              <tbody>
+                <tr><td>Makro (X) → Aktivitas (Z)</td><td>0.233</td><td>Sedang</td></tr>
+                <tr><td>Makro (X) → Kinerja (Y)</td><td>0.212</td><td>Sedang</td></tr>
+                <tr><td>Aktivitas (Z) → Kinerja (Y)</td><td><strong>4.082</strong></td><td>Sangat Besar</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -527,8 +625,7 @@ body {
   <div class="cbox cbox-full" style="margin-bottom: 24px;">
     <div class="cbox-title" style="margin-bottom: 16px;">C. Evaluasi Lanjutan (Discriminant Validity & Collinearity)</div>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-      
+    <div class="grid-halves">
       <!-- Cross Loadings -->
       <div>
         <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">1. Cross-Loadings (Detail Discriminant Validity)</div>
@@ -636,13 +733,24 @@ body {
   <!-- KESIMPULAN AKHIR -->
   <div class="cbox cbox-full" style="margin-bottom: 24px; background: var(--navy-deep); color: var(--cream); border-color: var(--navy-deep);">
     <div class="cbox-title" style="color: var(--gold-lt); margin-bottom: 16px;">D. Kesimpulan Akhir Penelitian</div>
-    <ul style="font-size: 13px; line-height: 1.8; padding-left: 20px; color: rgba(255,255,255,0.9);">
+    <ul style="font-size: 13px; line-height: 1.8; padding-left: 20px; color: rgba(255,255,255,0.9); margin:0;">
       <li style="margin-bottom: 8px;">Seluruh indikator penelitian dinyatakan <strong>valid</strong> (Outer Loading > 0.70) dan seluruh konstruk <strong>reliabel</strong> (Cronbach's Alpha & CR > 0.70, AVE > 0.50).</li>
       <li style="margin-bottom: 8px;"><em>Discriminant validity</em> secara umum terpenuhi, meskipun terdapat nilai <span style="color: var(--maroon-lt); font-weight: bold;">HTMT sebesar 0.945</span> antara Aktivitas Pasar dan Kinerja Pasar yang menunjukkan hubungan yang sangat erat secara statistik (ditandai juga oleh anomali <em>cross-loading</em> pada indikator SID).</li>
       <li style="margin-bottom: 8px;"><strong>Tidak ditemukan masalah multikolinearitas</strong> baik pada <em>outer</em> maupun <em>inner model</em> (VIF di bawah ambang batas yang direkomendasikan).</li>
       <li style="margin-bottom: 8px;">Seluruh jalur hubungan hipotesis antar variabel terbukti <strong>signifikan</strong> (P-Values = 0.000).</li>
       <li style="margin-bottom: 8px;">Aktivitas Pasar (Z) terbukti secara empiris bertindak sebagai <strong>variabel mediasi parsial yang signifikan</strong> dalam menjembatani dampak Kondisi Makroekonomi terhadap Kinerja Pasar Modal.</li>
       <li>Secara keseluruhan, model penelitian dinyatakan layak dan memiliki daya prediksi yang sangat kuat, dibuktikan dengan kemampuannya menjelaskan <strong>86,3% variasi Kinerja Pasar (R² = 0.863)</strong> selama periode observasi 2020–2023.</li>
+    </ul>
+  </div>
+
+  <!-- SARAN & IMPLIKASI (BAB 5.2) -->
+  <div class="cbox cbox-full" style="margin-bottom: 24px; background: var(--sage); color: var(--sage-lt); border-color: var(--sage);">
+    <div class="cbox-title" style="color: #fff; margin-bottom: 16px;">E. Saran & Implikasi Manajerial (Bab 5.2)</div>
+    <ul style="font-size: 13px; line-height: 1.8; padding-left: 20px; color: rgba(255,255,255,0.9); margin:0;">
+      <li style="margin-bottom: 8px;"><strong>Bagi Investor (Praktis):</strong> Disarankan untuk tidak hanya berfokus pada pergerakan akhir IHSG, tetapi juga memantau secara proaktif rilis indikator makroekonomi (terutama Inflasi dan BI Rate). Data membuktikan bahwa makroekonomi menjadi katalisator yang memengaruhi volume dan frekuensi perdagangan secara signifikan sebelum akhirnya membentuk tren IHSG.</li>
+      <li style="margin-bottom: 8px;"><strong>Bagi Pemerintah dan Regulator (Bank Indonesia & BEI):</strong> Stabilitas makroekonomi (terutama nilai tukar Rupiah) sangat krusial untuk mempertahankan tingkat keaktifan investor ritel maupun institusi. Kebijakan moneter yang responsif namun terukur sangat dibutuhkan untuk mencegah <em>capital outflow</em>.</li>
+      <li style="margin-bottom: 8px;"><strong>Bagi Emiten (Perusahaan Tercatat):</strong> Mengetahui besarnya pengaruh kondisi makro terhadap aktivitas transaksi, emiten disarankan merumuskan strategi mitigasi risiko nilai tukar (<em>hedging</em>) dan melakukan penyesuaian biaya operasional di era suku bunga tinggi guna mempertahankan kapitalisasi pasarnya.</li>
+      <li><strong>Bagi Peneliti Selanjutnya (Akademis):</strong> Mengingat temuan anomali <em>cross-loading</em> dan nilai HTMT yang sangat tinggi (0.945) antara variabel Aktivitas Pasar (Z) dan Kinerja Pasar (Y), disarankan untuk menguji kedua konstruk ini sebagai indikator pembentuk satu konstruk laten orde kedua (<em>second-order construct</em>), atau memodifikasi dimensi indikator Aktivitas Pasar agar lebih berfokus pada likuiditas murni.</li>
     </ul>
   </div>
 
@@ -715,6 +823,8 @@ const MASTER = [
 
 /* Global Chart instances */
 let chartY, chartZ, chartGrowth, chartX;
+let chartInflasi, chartBiRate, chartKurs, chartVolSing, chartFreqSing;
+
 Chart.defaults.font.family = "'DM Sans', sans-serif";
 const cOpt = { responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false} };
 const tFmt = v => v.toLocaleString('id-ID');
@@ -802,8 +912,37 @@ function renderDashboard(dataArray) {
   // 5. Destroy old charts if exist
   if(chartY) chartY.destroy(); if(chartZ) chartZ.destroy();
   if(chartGrowth) chartGrowth.destroy(); if(chartX) chartX.destroy();
+  if(chartInflasi) chartInflasi.destroy(); if(chartBiRate) chartBiRate.destroy();
+  if(chartKurs) chartKurs.destroy(); if(chartVolSing) chartVolSing.destroy();
+  if(chartFreqSing) chartFreqSing.destroy();
 
-  // 6. Draw Charts
+  // 6. Draw SINGLE Charts (Baru untuk keperluan Screenshot)
+  chartInflasi = new Chart(document.getElementById('chart_inflasi'), {
+    type: 'line', data: { labels: C.prd, datasets: [{ label: 'Inflasi (%)', data: C.inf, borderColor: '#7a1f2e', backgroundColor: 'rgba(122,31,46,0.1)', fill: true, borderWidth: 2, tension: 0.3, pointRadius: 1 }] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: v => v + '%' } } } }
+  });
+
+  chartBiRate = new Chart(document.getElementById('chart_birate'), {
+    type: 'line', data: { labels: C.prd, datasets: [{ label: 'BI Rate (%)', data: C.bi, borderColor: '#b8964a', backgroundColor: 'rgba(184,150,74,0.1)', fill: true, borderWidth: 2, tension: 0.3, pointRadius: 1 }] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: v => v + '%' } } } }
+  });
+
+  chartKurs = new Chart(document.getElementById('chart_kurs'), {
+    type: 'line', data: { labels: C.prd, datasets: [{ label: 'Kurs (IDR)', data: C.kurs, borderColor: '#1e3f6e', backgroundColor: 'rgba(30,63,110,0.1)', fill: true, borderWidth: 2, tension: 0.3, pointRadius: 1 }] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: tFmt } } } }
+  });
+
+  chartVolSing = new Chart(document.getElementById('chart_volume_single'), {
+    type: 'bar', data: { labels: C.prd, datasets: [{ label: 'Volume (Juta Lembar)', data: C.vol, backgroundColor: '#717490', borderRadius: 2 }] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: tFmt } } } }
+  });
+
+  chartFreqSing = new Chart(document.getElementById('chart_frekuensi_single'), {
+    type: 'line', data: { labels: C.prd, datasets: [{ label: 'Frekuensi (Ribu Trx)', data: C.freq, borderColor: '#081628', backgroundColor: 'rgba(8,22,40,0.1)', fill: true, borderWidth: 2, tension: 0.2, pointRadius: 1 }] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: tFmt } } } }
+  });
+
+  // 7. Draw COMBINED Charts (Grafik yang lama)
   chartY = new Chart(document.getElementById('chart_y'),{
     type:'line', data:{ labels:C.prd, datasets:[
       { label:'IHSG', data:C.ihsg, borderColor:'#1e3f6e', borderWidth:2.5, pointRadius:0, tension:.3, yAxisID:'y' },
@@ -858,7 +997,6 @@ window.onload = function() {
 
 function exportMasterCSV() {
   const hdr = 'Periode,IHSG_Poin,Inflasi_Pct,BI_Rate_Pct,Kurs_IDR,Volume_Juta,Frekuensi_Ribu,SID_Juta,Kapitalisasi_Triliun,Pertumbuhan_SID_Pct';
-  // Use the currently filtered data or the whole master data? Let's export full master always for safety, or filtered. Let's export filtered.
   const val = document.getElementById('yearFilter').value;
   let exportData = MASTER;
   if (val !== 'ALL') exportData = MASTER.filter(row => row[0].endsWith('-' + val));
