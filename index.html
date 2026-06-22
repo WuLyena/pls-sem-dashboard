@@ -441,6 +441,11 @@ body {
       <div class="cbox-sub">Tingkat pertumbuhan gabungan bulanan.</div>
       <div class="chart-wrapper"><canvas id="chart_growth"></canvas></div>
     </div>
+    <div class="cbox">
+      <div class="cbox-title">Tren Kapitalisasi Pasar (Triliun Rupiah)</div>
+      <div class="cbox-sub">Visualisasi pergerakan nilai kapitalisasi pasar (2020-2023).</div>
+      <div class="chart-wrapper"><canvas id="chart_kap_single"></canvas></div>
+    </div>
   </div>
 
   <!-- CHARTS GABUNGAN -->
@@ -541,6 +546,58 @@ body {
   <!-- Outer Model Result Box -->
   <div class="cbox cbox-full" style="margin-bottom: 24px;">
     <div class="cbox-title" style="margin-bottom: 16px;">A. Evaluasi Outer Model (Convergent Validity & Reliability)</div>
+
+    <!-- TAMBAHAN: DIAGRAM VISUAL OUTER MODEL -->
+    <div style="background: var(--cream); border: 1px solid var(--rule); border-radius: var(--r-lg); padding: 24px; margin-bottom: 24px; display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- Konstruk Makro X -->
+        <div style="flex: 1 1 220px; background: var(--white); border-radius: var(--r-lg); padding: 20px; border: 1px solid var(--rule); box-shadow: 0 2px 8px rgba(13,31,60,0.04);">
+            <div style="text-align: center; background: var(--maroon); color: var(--white); padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 20px;">Kondisi Makro (X)</div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 10px; background: var(--maroon-lt); color: var(--maroon); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.875 ➔</span>
+                <div style="border: 1px solid var(--maroon-lt); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">Inflasi_Pct</div>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 10px; background: var(--maroon-lt); color: var(--maroon); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.802 ➔</span>
+                <div style="border: 1px solid var(--maroon-lt); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">BI_Rate_Pct</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <span style="font-size: 10px; background: var(--maroon-lt); color: var(--maroon); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.822 ➔</span>
+                <div style="border: 1px solid var(--maroon-lt); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">Kurs_IDR</div>
+            </div>
+        </div>
+
+        <!-- Konstruk Aktivitas Z -->
+        <div style="flex: 1 1 220px; background: var(--white); border-radius: var(--r-lg); padding: 20px; border: 1px solid var(--rule); box-shadow: 0 2px 8px rgba(13,31,60,0.04);">
+            <div style="text-align: center; background: var(--sage); color: var(--white); padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 20px;">Aktivitas Pasar (Z)</div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 10px; background: var(--sage-lt); color: var(--sage); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.879 ➔</span>
+                <div style="border: 1px solid var(--sage-lt); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">Volume_Juta</div>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 10px; background: var(--sage-lt); color: var(--sage); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.873 ➔</span>
+                <div style="border: 1px solid var(--sage-lt); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">SID_Juta</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <span style="font-size: 10px; background: var(--sage-lt); color: var(--sage); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.854 ➔</span>
+                <div style="border: 1px solid var(--sage-lt); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">Frekuensi_Ribu</div>
+            </div>
+        </div>
+
+        <!-- Konstruk Kinerja Y -->
+        <div style="flex: 1 1 220px; background: var(--white); border-radius: var(--r-lg); padding: 20px; border: 1px solid var(--rule); box-shadow: 0 2px 8px rgba(13,31,60,0.04);">
+            <div style="text-align: center; background: var(--navy); color: var(--white); padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 12px; margin-bottom: 20px;">Kinerja Pasar (Y)</div>
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <span style="font-size: 10px; background: rgba(13,31,60,0.08); color: var(--navy); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.983 ➔</span>
+                <div style="border: 1px solid rgba(13,31,60,0.15); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">IHSG_Poin</div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <span style="font-size: 10px; background: rgba(13,31,60,0.08); color: var(--navy); padding: 4px 8px; border-radius: 4px; font-weight: 700; margin-right: 12px; width: 54px; text-align: center;">0.983 ➔</span>
+                <div style="border: 1px solid rgba(13,31,60,0.15); padding: 6px 12px; border-radius: 4px; font-size: 11px; flex: 1; color: var(--ink2); font-weight: 500;">Kapitalisasi_Triliun</div>
+            </div>
+        </div>
+    </div>
+    <!-- AKHIR DIAGRAM VISUAL OUTER MODEL -->
+
     <div class="dtable-wrap">
       <table class="dtable" style="min-width: 700px; white-space: nowrap;">
         <thead>
@@ -575,7 +632,7 @@ body {
             <td rowspan="3" style="vertical-align: top; border-top: 1px solid var(--rule);">0.854</td>
             <td rowspan="3" style="vertical-align: top; border-top: 1px solid var(--rule);">0.902</td>
             <td rowspan="3" style="vertical-align: top; border-top: 1px solid var(--rule);">0.755</td>
-            <td rowspan="3" style="vertical-align: top; border-top: 1px solid var(--rule);"><span class="status-pass">Valid & Reliabel</span></td>
+            <td rowspan="3" style="vertical-align: top; border-top: 1px solid var(--rule)"><span class="status-pass">Valid & Reliabel</span></td>
           </tr>
           <tr><td class="txt-left">SID_Juta</td><td>0.873</td></tr>
           <tr><td class="txt-left">Frekuensi_Ribu</td><td>0.854</td></tr>
@@ -587,7 +644,7 @@ body {
             <td rowspan="2" style="vertical-align: top; border-top: 1px solid var(--rule);">0.966</td>
             <td rowspan="2" style="vertical-align: top; border-top: 1px solid var(--rule);">0.983</td>
             <td rowspan="2" style="vertical-align: top; border-top: 1px solid var(--rule);">0.967</td>
-            <td rowspan="2" style="vertical-align: top; border-top: 1px solid var(--rule);"><span class="status-pass">Valid & Reliabel</span></td>
+            <td rowspan="2" style="vertical-align: top; border-top: 1px solid var(--rule)"><span class="status-pass">Valid & Reliabel</span></td>
           </tr>
           <tr><td class="txt-left">Kapitalisasi_Triliun</td><td>0.983</td></tr>
         </tbody>
@@ -658,6 +715,98 @@ body {
           <div style="text-align: center; margin-top: 8px;">
               <span style="font-size: 10px; color: var(--ink3);">*** signifikan pada p-value &lt; 0.001</span>
           </div>
+      </div>
+
+      <!-- POTONGAN DIAGRAM KHUSUS SCREENSHOT SKRIPSI -->
+      <div class="cbox-title" style="margin-top: 32px; margin-bottom: 16px; color: var(--navy); border-bottom: 1px dashed var(--rule); padding-bottom: 8px;">
+        Potongan Diagram Jalur (Khusus untuk Screenshot Skripsi Bab 4)
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 32px;">
+          
+          <!-- Box 1: Z -> Y -->
+          <div style="background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-lg); padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(13,31,60,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--ink3); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Gambar 4.21: Aktivitas (Z) → Kinerja (Y)</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                  <div style="padding: 12px; background: var(--sage-lt); border: 2px solid var(--sage); border-radius: var(--r); width: 130px;">
+                      <div style="font-size: 10px; color: var(--sage); font-weight: 700;">Z</div>
+                      <div style="font-weight: 700; font-size: 12px; color: var(--sage);">Aktivitas Pasar</div>
+                  </div>
+                  <div>
+                      <div style="font-size: 24px; color: var(--gold); line-height: 1;">➔</div>
+                      <div style="font-size: 11px; font-weight: 700; color: var(--gold); background: var(--gold-pale); padding: 2px 8px; border-radius: 8px;">β = 0.831</div>
+                  </div>
+                  <div style="padding: 12px; background: rgba(13,31,60,0.08); border: 2px solid var(--navy); border-radius: var(--r); width: 130px;">
+                      <div style="font-size: 10px; color: var(--navy); font-weight: 700;">Y</div>
+                      <div style="font-weight: 700; font-size: 12px; color: var(--navy);">Kinerja Pasar</div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Box 2: Mediasi X -> Z -> Y -->
+          <div style="background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-lg); padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(13,31,60,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--ink3); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Gambar 4.22: Diagram Jalur Mediasi Lengkap</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                  <div style="padding: 8px; background: var(--maroon-lt); border: 1px solid var(--maroon); border-radius: var(--r); width: 100px;">
+                      <div style="font-weight: 700; font-size: 11px; color: var(--maroon);">Kondisi Makro</div>
+                  </div>
+                  <div>
+                      <div style="font-size: 18px; color: var(--gold); line-height: 1;">➔</div>
+                      <div style="font-size: 9px; font-weight: 700; color: var(--gold);">β = 0.435</div>
+                  </div>
+                  <div style="padding: 8px; background: var(--sage-lt); border: 1px solid var(--sage); border-radius: var(--r); width: 100px;">
+                      <div style="font-weight: 700; font-size: 11px; color: var(--sage);">Aktivitas Pasar</div>
+                  </div>
+                  <div>
+                      <div style="font-size: 18px; color: var(--gold); line-height: 1;">➔</div>
+                      <div style="font-size: 9px; font-weight: 700; color: var(--gold);">β = 0.831</div>
+                  </div>
+                  <div style="padding: 8px; background: rgba(13,31,60,0.08); border: 1px solid var(--navy); border-radius: var(--r); width: 100px;">
+                      <div style="font-weight: 700; font-size: 11px; color: var(--navy);">Kinerja Pasar</div>
+                  </div>
+              </div>
+              <div style="margin-top: 12px; font-size: 10px; font-weight: 700; color: var(--maroon); background: var(--maroon-lt); padding: 6px 12px; border-radius: 4px; border: 1px dashed var(--maroon); display: inline-block;">
+                  Indirect Effect = 0.361 | Kontribusi Mediasi = 65.5%
+              </div>
+          </div>
+
+          <!-- Box 3: X -> Z -->
+          <div style="background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-lg); padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(13,31,60,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--ink3); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Makro (X) → Aktivitas (Z)</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                  <div style="padding: 12px; background: var(--maroon-lt); border: 2px solid var(--maroon); border-radius: var(--r); width: 130px;">
+                      <div style="font-size: 10px; color: var(--maroon); font-weight: 700;">X</div>
+                      <div style="font-weight: 700; font-size: 12px; color: var(--maroon);">Kondisi Makro</div>
+                  </div>
+                  <div>
+                      <div style="font-size: 24px; color: var(--gold); line-height: 1;">➔</div>
+                      <div style="font-size: 11px; font-weight: 700; color: var(--gold); background: var(--gold-pale); padding: 2px 8px; border-radius: 8px;">β = 0.435</div>
+                  </div>
+                  <div style="padding: 12px; background: var(--sage-lt); border: 2px solid var(--sage); border-radius: var(--r); width: 130px;">
+                      <div style="font-size: 10px; color: var(--sage); font-weight: 700;">Z</div>
+                      <div style="font-weight: 700; font-size: 12px; color: var(--sage);">Aktivitas Pasar</div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Box 4: X -> Y -->
+          <div style="background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-lg); padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(13,31,60,0.03);">
+              <div style="font-size: 11px; font-weight: 700; color: var(--ink3); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Pengaruh Langsung: Makro (X) → Kinerja (Y)</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 16px;">
+                  <div style="padding: 12px; background: var(--maroon-lt); border: 2px solid var(--maroon); border-radius: var(--r); width: 130px;">
+                      <div style="font-size: 10px; color: var(--maroon); font-weight: 700;">X</div>
+                      <div style="font-weight: 700; font-size: 12px; color: var(--maroon);">Kondisi Makro</div>
+                  </div>
+                  <div>
+                      <div style="font-size: 24px; color: var(--gold); line-height: 1;">➔</div>
+                      <div style="font-size: 11px; font-weight: 700; color: var(--gold); background: var(--gold-pale); padding: 2px 8px; border-radius: 8px;">β = 0.189</div>
+                  </div>
+                  <div style="padding: 12px; background: rgba(13,31,60,0.08); border: 2px solid var(--navy); border-radius: var(--r); width: 130px;">
+                      <div style="font-size: 10px; color: var(--navy); font-weight: 700;">Y</div>
+                      <div style="font-weight: 700; font-size: 12px; color: var(--navy);">Kinerja Pasar</div>
+                  </div>
+              </div>
+          </div>
+
       </div>
 
       <div class="dtable-wrap" style="margin-bottom: 24px;">
@@ -910,7 +1059,7 @@ body {
         <div class="cbox-title" style="font-size: 13px; margin-bottom: 8px;">2. Collinearity Statistics (VIF)</div>
         <div class="dtable-wrap" style="margin-bottom: 16px;">
           <table class="dtable">
-            <thead><tr><th colspan="2" style="text-align:center;">Inner Model (Batas < 5.00)</th></tr></thead>
+            <thead><tr><th colspan="2" style="text-align:center;">Inner Model (Batas &lt; 5.00)</th></tr></thead>
             <tbody>
               <tr><td class="txt-left">Makro (X) → Aktivitas (Z)</td><td>1.000 <span class="status-pass" style="margin-left:8px">Aman</span></td></tr>
               <tr><td class="txt-left">Makro (X) → Kinerja (Y)</td><td>1.233 <span class="status-pass" style="margin-left:8px">Aman</span></td></tr>
@@ -921,7 +1070,7 @@ body {
         
         <div class="dtable-wrap">
           <table class="dtable">
-            <thead><tr><th colspan="2" style="text-align:center;">Outer Model (Batas < 10.00)</th></tr></thead>
+            <thead><tr><th colspan="2" style="text-align:center;">Outer Model (Batas &lt; 10.00)</th></tr></thead>
             <tbody>
               <tr><td class="txt-left">IHSG_Poin</td><td>7.790 <span class="status-pass" style="margin-left:8px">Aman</span></td></tr>
               <tr><td class="txt-left">Kapitalisasi_Triliun</td><td>7.790 <span class="status-pass" style="margin-left:8px">Aman</span></td></tr>
@@ -1059,7 +1208,7 @@ const MASTER = [
 
 /* Global Chart instances */
 let chartY, chartZ, chartX;
-let chartInflasi, chartBiRate, chartKurs, chartVolSing, chartFreqSing, chartSidSing, chartGrowthSing;
+let chartInflasi, chartBiRate, chartKurs, chartVolSing, chartFreqSing, chartSidSing, chartGrowthSing, chartKapSing;
 let chartScatVol, chartScatInf;
 let chartComparison, chartDonut;
 
@@ -1201,7 +1350,7 @@ function renderDashboard(dataArray) {
   if(chartInflasi) chartInflasi.destroy(); if(chartBiRate) chartBiRate.destroy();
   if(chartKurs) chartKurs.destroy(); if(chartVolSing) chartVolSing.destroy();
   if(chartFreqSing) chartFreqSing.destroy(); if(chartSidSing) chartSidSing.destroy();
-  if(chartGrowthSing) chartGrowthSing.destroy();
+  if(chartGrowthSing) chartGrowthSing.destroy(); if(chartKapSing) chartKapSing.destroy();
   if(chartScatVol) chartScatVol.destroy(); if(chartScatInf) chartScatInf.destroy();
   if(chartComparison) chartComparison.destroy();
   if(chartDonut) chartDonut.destroy();
@@ -1253,6 +1402,11 @@ function renderDashboard(dataArray) {
   chartGrowthSing = new Chart(document.getElementById('chart_growth'), {
     type:'bar', data:{ labels:C.prd, datasets:[{ label:'Pertumbuhan SID (%)', data:C.grw, backgroundColor:'#2a4a3a', borderRadius:2 }]},
     options:{...cOpt, plugins: [yearBoundaryPlugin], scales:{ y:{ ticks:{callback:v=>v+'%'} } } }
+  });
+
+  chartKapSing = new Chart(document.getElementById('chart_kap_single'), {
+    type: 'line', data: { labels: C.prd, datasets: [{ label: 'Kapitalisasi (Triliun Rupiah)', data: C.kap, borderColor: '#b8964a', backgroundColor: 'rgba(184,150,74,0.1)', fill: true, borderWidth: 2, tension: 0.3, pointRadius: 1 }] },
+    options: { ...cOpt, plugins: [yearBoundaryPlugin], scales: { y: { ticks: { callback: tFmt } } } }
   });
 
   // 8. Draw COMBINED Charts
